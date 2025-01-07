@@ -10,25 +10,32 @@ const AuthForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') {
         setErrorMessage("");
+      }
+      if (event === 'SIGNED_IN') {
+        console.log('Successfully signed in:', session?.user?.email);
       }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  const getErrorMessage = (error: AuthError) => {
+  const handleError = (error: AuthError) => {
+    console.error('Auth error:', error);
     switch (error.message) {
       case "Invalid login credentials":
-        return "Email ou senha inválidos. Por favor, verifique suas credenciais ou crie uma nova conta.";
+        setErrorMessage("Email ou senha inválidos. Por favor, verifique suas credenciais.");
+        break;
       case "User already registered":
-        return "Este email já está registrado. Por favor, faça login.";
+        setErrorMessage("Este email já está registrado. Por favor, faça login.");
+        break;
       case "Email not confirmed":
-        return "Por favor, confirme seu email antes de fazer login. Verifique sua caixa de entrada.";
+        setErrorMessage("Por favor, tente fazer login novamente.");
+        break;
       default:
-        return error.message;
+        setErrorMessage(error.message);
     }
   };
 
@@ -67,6 +74,7 @@ const AuthForm = () => {
           },
         }}
         providers={[]}
+        onError={handleError}
         redirectTo={window.location.origin}
       />
     </Card>
