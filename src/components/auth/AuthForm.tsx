@@ -17,6 +17,12 @@ const AuthForm = () => {
       if (event === 'SIGNED_IN') {
         console.log('Successfully signed in:', session?.user?.email);
       }
+      if (event === 'USER_UPDATED') {
+        const error = session?.error as AuthError | undefined;
+        if (error) {
+          handleError(error);
+        }
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -74,7 +80,6 @@ const AuthForm = () => {
           },
         }}
         providers={[]}
-        onError={handleError}
         redirectTo={window.location.origin}
       />
     </Card>
