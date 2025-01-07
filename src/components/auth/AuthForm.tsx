@@ -19,20 +19,6 @@ const AuthForm = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Listen for auth state changes to catch errors
-  useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === 'USER_SIGNED_IN' && !session) {
-        const { error } = await supabase.auth.getSession();
-        if (error) {
-          setErrorMessage(getErrorMessage(error));
-        }
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
   const getErrorMessage = (error: AuthError) => {
     switch (error.message) {
       case "Invalid login credentials":
