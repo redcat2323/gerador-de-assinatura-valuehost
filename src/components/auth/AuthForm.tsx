@@ -10,9 +10,23 @@ const AuthForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'USER_DELETED' || event === 'SIGNED_OUT') {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') {
         setErrorMessage("");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  // Listen for auth state changes to catch errors
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'USER_SIGNED_IN' && !session) {
+        const { error } = await supabase.auth.getSession();
+        if (error) {
+          setErrorMessage(getErrorMessage(error));
+        }
       }
     });
 
@@ -26,7 +40,7 @@ const AuthForm = () => {
       case "User already registered":
         return "Este email já está registrado. Por favor, faça login.";
       case "Email not confirmed":
-        return "Por favor, confirme seu email antes de fazer login.";
+        return "Por favor, confirme seu email antes de fazer login. Verifique sua caixa de entrada.";
       default:
         return error.message;
     }
@@ -68,9 +82,6 @@ const AuthForm = () => {
         }}
         providers={[]}
         redirectTo={window.location.origin}
-        onError={(error) => {
-          setErrorMessage(getErrorMessage(error));
-        }}
       />
     </Card>
   );
