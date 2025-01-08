@@ -38,7 +38,7 @@ serve(async (req) => {
 
     const fileExt = file.name.split('.').pop()
     const fileName = `${crypto.randomUUID()}.${fileExt}`
-    const filePath = `${type}s/${fileName}`
+    const filePath = `${type}s/${fileName}` // Will be stored in logos/ or banners/ subfolder
 
     const { data, error: uploadError } = await supabase.storage
       .from('signatures')
@@ -48,6 +48,7 @@ serve(async (req) => {
       })
 
     if (uploadError) {
+      console.error('Upload error:', uploadError)
       return new Response(
         JSON.stringify({ error: 'Falha ao fazer upload do arquivo', details: uploadError }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
@@ -63,6 +64,7 @@ serve(async (req) => {
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
     )
   } catch (error) {
+    console.error('Unexpected error:', error)
     return new Response(
       JSON.stringify({ error: 'Ocorreu um erro inesperado', details: error.message }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }

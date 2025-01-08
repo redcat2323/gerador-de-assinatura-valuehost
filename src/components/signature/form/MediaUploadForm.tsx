@@ -4,6 +4,7 @@ import { Button } from "../../ui/button";
 import { Upload } from "lucide-react";
 import { SignatureData } from "../types";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 interface MediaUploadFormProps {
   signatureData: SignatureData;
@@ -20,21 +21,18 @@ export const MediaUploadForm = ({ signatureData, onImageUpload }: MediaUploadFor
     formData.append('type', type);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/upload-image`, {
-        method: 'POST',
+      const { data, error } = await supabase.functions.invoke('upload-image', {
         body: formData,
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
       });
 
-      if (!response.ok) {
-        throw new Error('Falha ao fazer upload da imagem');
+      if (error) {
+        throw error;
       }
 
-      const { url } = await response.json();
-      onImageUpload(url, type);
-      toast.success(`${type === 'logo' ? 'Logo' : 'Banner'} atualizado com sucesso!`);
+      if (data?.url) {
+        onImageUpload(data.url, type);
+        toast.success(`${type === 'logo' ? 'Logo' : 'Banner'} atualizado com sucesso!`);
+      }
     } catch (error) {
       console.error('Erro ao fazer upload:', error);
       toast.error('Erro ao fazer upload da imagem');
