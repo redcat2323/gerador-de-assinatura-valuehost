@@ -6,6 +6,7 @@ import { MediaUploadForm } from "./form/MediaUploadForm";
 import { ColorCustomizationForm } from "./form/ColorCustomizationForm";
 import { FontCustomizationForm } from "./form/FontCustomizationForm";
 import { CustomLinksForm } from "./form/CustomLinksForm";
+import { BorderRadiusForm } from "./form/BorderRadiusForm";
 
 interface SignatureFormProps {
   signatureData: SignatureData;
@@ -14,6 +15,7 @@ interface SignatureFormProps {
   handleColorChange: (colorType: 'primary' | 'secondary' | 'accent', value: string) => void;
   handleFontChange: (font: string) => void;
   handleCustomLinksChange: (links: Array<{ label: string; url: string }>) => void;
+  handleBorderRadiusChange: (type: 'logo' | 'banner', value: string) => void;
 }
 
 export const SignatureForm = ({ 
@@ -22,7 +24,8 @@ export const SignatureForm = ({
   handleImageUpload,
   handleColorChange,
   handleFontChange,
-  handleCustomLinksChange
+  handleCustomLinksChange,
+  handleBorderRadiusChange
 }: SignatureFormProps) => {
   const colors = {
     primary: "#1a1f2c",
@@ -36,6 +39,11 @@ export const SignatureForm = ({
       <MediaUploadForm
         signatureData={signatureData}
         onImageUpload={handleImageUpload}
+      />
+
+      <BorderRadiusForm
+        signatureData={signatureData}
+        onBorderRadiusChange={handleBorderRadiusChange}
       />
 
       <ColorCustomizationForm

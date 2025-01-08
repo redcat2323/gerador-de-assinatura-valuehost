@@ -9,6 +9,8 @@ export interface SignatureData {
   logo_url?: string;
   banner_url?: string;
   font_family?: string;
+  logo_border_radius?: string;
+  banner_border_radius?: string;
   colors?: {
     primary: string;
     secondary: string;

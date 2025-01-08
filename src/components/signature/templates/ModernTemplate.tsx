@@ -25,13 +25,17 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                               <img
                                 src={data.logo_url}
                                 alt="Logo"
-                                style={{ maxWidth: "150px", height: "auto" }}
+                                style={{ 
+                                  maxWidth: "150px", 
+                                  height: "auto",
+                                  borderRadius: data.logo_border_radius || '0'
+                                }}
                               />
                             </td>
                           )}
                           <td style={{ 
                             verticalAlign: "top",
-                            borderLeft: `4px solid ${data.colors.accent || "#9b87f5"}`,
+                            borderLeft: `4px solid ${data.colors?.accent || "#9b87f5"}`,
                             paddingLeft: "15px"
                           }}>
                             <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
@@ -41,7 +45,7 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                                     <span style={{ 
                                       fontSize: "18px", 
                                       fontWeight: "bold",
-                                      color: data.colors.primary || "#1a1f2c",
+                                      color: data.colors?.primary || "#1a1f2c",
                                       display: "block"
                                     }}>
                                       {data.fullName || "Seu Nome"}
@@ -49,7 +53,7 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                                     {(data.jobTitle || data.company) && (
                                       <span style={{ 
                                         fontSize: "14px",
-                                        color: data.colors.secondary || "#8e9196",
+                                        color: data.colors?.secondary || "#8e9196",
                                         display: "block",
                                         paddingTop: "4px"
                                       }}>
@@ -87,7 +91,8 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                           width: "100%",
                           maxWidth: "600px",
                           height: "auto",
-                          display: "block"
+                          display: "block",
+                          borderRadius: data.banner_border_radius || '0'
                         }}
                       />
                     </td>
