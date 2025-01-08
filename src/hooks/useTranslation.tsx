@@ -1,8 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import { translations, Language, TranslationKey } from "../i18n/translations";
 import { supabase } from "../integrations/supabase/client";
 
-export const useTranslation = () => {
+type TranslationContextType = {
+  t: (key: TranslationKey) => string;
+  language: Language;
+  changeLanguage: (language: Language) => Promise<void>;
+};
+
+const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
+
+export const TranslationProvider = ({ children }: { children: React.ReactNode }) => {
   const [language, setLanguage] = useState<Language>("pt-BR");
 
   useEffect(() => {
@@ -75,5 +83,17 @@ export const useTranslation = () => {
     }
   };
 
-  return { t, language, changeLanguage };
+  return (
+    <TranslationContext.Provider value={{ t, language, changeLanguage }}>
+      {children}
+    </TranslationContext.Provider>
+  );
+};
+
+export const useTranslation = () => {
+  const context = useContext(TranslationContext);
+  if (context === undefined) {
+    throw new Error("useTranslation must be used within a TranslationProvider");
+  }
+  return context;
 };
