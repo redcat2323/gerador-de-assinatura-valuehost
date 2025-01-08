@@ -3,7 +3,7 @@ import { translations, Language, TranslationKey } from "../i18n/translations";
 import { supabase } from "../integrations/supabase/client";
 
 export const useTranslation = () => {
-  const [language, setLanguage] = useState<Language>("en-US");
+  const [language, setLanguage] = useState<Language>("pt-BR");
 
   useEffect(() => {
     const loadUserLanguage = async () => {
@@ -18,23 +18,18 @@ export const useTranslation = () => {
         if (settings?.language) {
           setLanguage(settings.language as Language);
         } else {
-          // Se o usuário não tiver configurações salvas, use o idioma do navegador
           const browserLanguage = navigator.language;
           const defaultLanguage = browserLanguage.startsWith("pt") ? "pt-BR" : "en-US";
           setLanguage(defaultLanguage);
           
-          // Salva a preferência de idioma do usuário
-          if (user) {
-            await supabase
-              .from("user_settings")
-              .upsert({
-                user_id: user.id,
-                language: defaultLanguage,
-              });
-          }
+          await supabase
+            .from("user_settings")
+            .upsert({
+              user_id: user.id,
+              language: defaultLanguage,
+            });
         }
       } else {
-        // Se não houver usuário logado, use o idioma do navegador
         const browserLanguage = navigator.language;
         const defaultLanguage = browserLanguage.startsWith("pt") ? "pt-BR" : "en-US";
         setLanguage(defaultLanguage);
@@ -45,7 +40,11 @@ export const useTranslation = () => {
   }, []);
 
   const t = (key: TranslationKey): string => {
-    return translations[language][key] || translations["en-US"][key];
+    if (!translations[language]?.[key]) {
+      console.warn(`Translation missing for key: ${key} in language: ${language}`);
+      return translations["en-US"][key] || key;
+    }
+    return translations[language][key];
   };
 
   const changeLanguage = async (newLanguage: Language) => {
