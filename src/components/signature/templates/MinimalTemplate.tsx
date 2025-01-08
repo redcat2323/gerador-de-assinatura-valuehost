@@ -9,7 +9,7 @@ interface MinimalTemplateProps {
 
 export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
   return (
-    <table cellPadding="0" cellSpacing="0" style={{ width: "100%", maxWidth: "600px", fontFamily: "Arial, sans-serif" }}>
+    <table cellPadding="0" cellSpacing="0" style={{ width: "100%", maxWidth: "600px", fontFamily: data.font_family || "Arial, sans-serif" }}>
       <tbody>
         <tr>
           <td style={{ padding: "15px" }}>

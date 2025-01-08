@@ -9,7 +9,11 @@ interface ProfessionalTemplateProps {
 
 export const ProfessionalTemplate = ({ data }: ProfessionalTemplateProps) => {
   return (
-    <table cellPadding="0" cellSpacing="0" style={{ width: "100%", maxWidth: "600px", fontFamily: "Arial, sans-serif" }}>
+    <table cellPadding="0" cellSpacing="0" style={{ 
+      width: "100%", 
+      maxWidth: "600px", 
+      fontFamily: data.font_family || "Arial, sans-serif" 
+    }}>
       <tbody>
         <tr>
           <td style={{ padding: "20px", backgroundColor: "#ffffff" }}>
