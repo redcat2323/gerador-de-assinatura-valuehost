@@ -113,6 +113,17 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
             </div>
           </td>
         </tr>
+        {data.banner_url && (
+          <tr>
+            <td style={{ paddingTop: "10px" }}>
+              <img
+                src={data.banner_url}
+                alt="Banner Promocional"
+                style={{ maxWidth: "100%", height: "auto" }}
+              />
+            </td>
+          </tr>
+        )}
       </tbody>
     </table>
   );
