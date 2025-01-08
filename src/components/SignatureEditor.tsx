@@ -1,20 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Card } from "./ui/card";
-import { Button } from "./ui/button";
-import { Download, Upload } from "lucide-react";
 import { toast } from "sonner";
 import { SignatureForm } from "./signature/SignatureForm";
 import { SignaturePreview } from "./signature/SignaturePreview";
 import { TemplateSelector } from "./signature/TemplateSelector";
 import { useTranslation } from "../hooks/useTranslation";
-import { TemplateStyle } from "./signature/types";
+import { TemplateStyle, SignatureData } from "./signature/types";
 import { CopyButtons } from "./signature/CopyButtons";
+import { EditorToolbar } from "./signature/EditorToolbar";
 
 const SignatureEditor = () => {
   const { t } = useTranslation();
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [signatureData, setSignatureData] = useState({
+  const [signatureData, setSignatureData] = useState<SignatureData>({
     fullName: "",
     jobTitle: "",
     company: "",
@@ -36,6 +34,8 @@ const SignatureEditor = () => {
     font_family: "Inter",
     logo_url: "",
     banner_url: "",
+    logo_border_radius: "",
+    banner_border_radius: "",
     customLinks: [],
   });
 
@@ -98,6 +98,13 @@ const SignatureEditor = () => {
     }));
   };
 
+  const handleBorderRadiusChange = (type: 'logo' | 'banner', value: string) => {
+    setSignatureData((prev) => ({
+      ...prev,
+      [type === 'logo' ? 'logo_border_radius' : 'banner_border_radius']: value,
+    }));
+  };
+
   const exportSignature = () => {
     const dataStr = JSON.stringify(signatureData, null, 2);
     const dataBlob = new Blob([dataStr], { type: "application/json" });
@@ -112,63 +119,15 @@ const SignatureEditor = () => {
     toast.success(t("successExport"));
   };
 
-  const handleImportClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const importSignature = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const importedData = JSON.parse(e.target?.result as string);
-
-        if (
-          typeof importedData === "object" &&
-          "fullName" in importedData &&
-          "social" in importedData &&
-          "colors" in importedData
-        ) {
-          setSignatureData(importedData);
-          toast.success(t("successImport"));
-        } else {
-          toast.error(t("invalidSignature"));
-        }
-      } catch (error) {
-        toast.error(t("errorImport"));
-      }
-    };
-    reader.readAsText(file);
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  };
-
   return (
     <div className="flex flex-col lg:flex-row gap-8 p-6 max-w-7xl mx-auto">
       <Card className="flex-1 p-6 bg-editor border-editor-border">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">{t("basicInfo")}</h2>
-          <div className="flex gap-2">
-            <Button onClick={handleImportClick} variant="outline" size="sm">
-              <Upload className="w-4 h-4 mr-2" />
-              {t("import")}
-            </Button>
-            <Button onClick={exportSignature} variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              {t("export")}
-            </Button>
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={importSignature}
-              accept=".json"
-              className="hidden"
-            />
-          </div>
+          <EditorToolbar 
+            onImport={setSignatureData}
+            onExport={exportSignature}
+          />
         </div>
 
         <SignatureForm
@@ -178,6 +137,7 @@ const SignatureEditor = () => {
           handleColorChange={handleColorChange}
           handleFontChange={handleFontChange}
           handleCustomLinksChange={handleCustomLinksChange}
+          handleBorderRadiusChange={handleBorderRadiusChange}
         />
       </Card>
 
