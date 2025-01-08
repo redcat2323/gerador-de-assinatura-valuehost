@@ -11,7 +11,20 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
     <table cellPadding="0" cellSpacing="0">
       <tbody>
         <tr>
-          <td style={{ paddingBottom: "10px" }}>
+          <td style={{ verticalAlign: "top", paddingRight: "15px" }}>
+            {data.logo_url && (
+              <img
+                src={data.logo_url}
+                alt="Logo"
+                style={{ 
+                  maxWidth: "100px",
+                  height: "auto",
+                  marginBottom: "10px"
+                }}
+              />
+            )}
+          </td>
+          <td style={{ verticalAlign: "top" }}>
             <strong className="text-lg text-primary">
               {data.fullName || "Seu Nome"}
             </strong>
@@ -20,60 +33,56 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
               {data.jobTitle && `${data.jobTitle}`}
               {data.company && ` @ ${data.company}`}
             </span>
-          </td>
-        </tr>
-        <tr>
-          <td style={{ paddingBottom: "10px" }}>
-            {data.email && (
-              <div>
-                <a
-                  href={`mailto:${data.email}`}
-                  className="text-primary hover:text-primary/80"
-                >
-                  {data.email}
-                </a>
-              </div>
-            )}
-            {data.phone && (
-              <div>
-                <a
-                  href={`tel:${data.phone}`}
-                  className="text-gray-600 hover:text-gray-800"
-                >
-                  {data.phone}
-                </a>
-              </div>
-            )}
-            {data.website && (
-              <div>
-                <a
-                  href={data.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-800"
-                >
-                  {data.website}
-                </a>
-              </div>
-            )}
-            {data.customLinks?.map((link, index) => (
-              <div key={index}>
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-800 flex items-center gap-1"
-                >
-                  <Link className="w-4 h-4" />
-                  {link.label}
-                </a>
-              </div>
-            ))}
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div className="flex gap-3">
+
+            <div style={{ marginTop: "10px" }}>
+              {data.email && (
+                <div>
+                  <a
+                    href={`mailto:${data.email}`}
+                    className="text-primary hover:text-primary/80"
+                  >
+                    {data.email}
+                  </a>
+                </div>
+              )}
+              {data.phone && (
+                <div>
+                  <a
+                    href={`tel:${data.phone}`}
+                    className="text-gray-600 hover:text-gray-800"
+                  >
+                    {data.phone}
+                  </a>
+                </div>
+              )}
+              {data.website && (
+                <div>
+                  <a
+                    href={data.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-gray-800"
+                  >
+                    {data.website}
+                  </a>
+                </div>
+              )}
+              {data.customLinks?.map((link, index) => (
+                <div key={index}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-gray-800 flex items-center gap-1"
+                  >
+                    <Link className="w-4 h-4" />
+                    {link.label}
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-3 mt-3">
               {data.social.facebook && (
                 <a
                   href={data.social.facebook}
@@ -115,7 +124,7 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
         </tr>
         {data.banner_url && (
           <tr>
-            <td style={{ paddingTop: "10px" }}>
+            <td colSpan={2} style={{ paddingTop: "15px" }}>
               <img
                 src={data.banner_url}
                 alt="Banner Promocional"
