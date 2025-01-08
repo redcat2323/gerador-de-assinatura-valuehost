@@ -2,6 +2,7 @@ import React from "react";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { SignatureData } from "../types";
+import { useTranslation } from "../../../hooks/useTranslation";
 
 interface BasicInfoFormProps {
   signatureData: SignatureData;
@@ -9,10 +10,12 @@ interface BasicInfoFormProps {
 }
 
 export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFormProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor="fullName">Nome Completo</Label>
+        <Label htmlFor="fullName">{t("fullName")}</Label>
         <Input
           id="fullName"
           value={signatureData.fullName}
@@ -22,7 +25,7 @@ export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFor
       </div>
 
       <div>
-        <Label htmlFor="jobTitle">Cargo</Label>
+        <Label htmlFor="jobTitle">{t("jobTitle")}</Label>
         <Input
           id="jobTitle"
           value={signatureData.jobTitle}
@@ -32,7 +35,7 @@ export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFor
       </div>
 
       <div>
-        <Label htmlFor="company">Empresa</Label>
+        <Label htmlFor="company">{t("company")}</Label>
         <Input
           id="company"
           value={signatureData.company}
@@ -42,7 +45,7 @@ export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFor
       </div>
 
       <div>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">{t("email")}</Label>
         <Input
           id="email"
           type="email"
@@ -53,7 +56,7 @@ export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFor
       </div>
 
       <div>
-        <Label htmlFor="phone">Telefone</Label>
+        <Label htmlFor="phone">{t("phone")}</Label>
         <Input
           id="phone"
           value={signatureData.phone}
@@ -63,7 +66,7 @@ export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFor
       </div>
 
       <div>
-        <Label htmlFor="website">Website</Label>
+        <Label htmlFor="website">{t("website")}</Label>
         <Input
           id="website"
           value={signatureData.website}
