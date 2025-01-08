@@ -10,7 +10,7 @@ const Index = () => {
           <h1 className="text-4xl font-bold tracking-tight mb-4">
             Gerador de Assinatura de E-mail
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-xl mx-auto">
             Crie uma assinatura de e-mail profissional e personalizada em poucos minutos. 
             Escolha entre diferentes modelos, adicione suas informações e personalize cores e estilos 
             para criar uma assinatura que represente você ou sua empresa.
