@@ -48,6 +48,8 @@ export const useTranslation = () => {
   };
 
   const changeLanguage = async (newLanguage: Language) => {
+    setLanguage(newLanguage); // Atualiza o estado imediatamente
+    
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
       await supabase
@@ -57,7 +59,6 @@ export const useTranslation = () => {
           language: newLanguage,
         });
     }
-    setLanguage(newLanguage);
   };
 
   return { t, language, changeLanguage };

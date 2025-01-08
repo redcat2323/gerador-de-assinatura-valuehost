@@ -18,6 +18,11 @@ export const LanguageSelector = ({
   currentLanguage,
   onLanguageChange,
 }: LanguageSelectorProps) => {
+  const handleLanguageChange = (language: Language) => {
+    console.log("Changing language to:", language); // Debug log
+    onLanguageChange(language);
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -27,13 +32,13 @@ export const LanguageSelector = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem
-          onClick={() => onLanguageChange("pt-BR")}
+          onClick={() => handleLanguageChange("pt-BR")}
           className={currentLanguage === "pt-BR" ? "bg-accent" : ""}
         >
           Português (BR)
         </DropdownMenuItem>
         <DropdownMenuItem
-          onClick={() => onLanguageChange("en-US")}
+          onClick={() => handleLanguageChange("en-US")}
           className={currentLanguage === "en-US" ? "bg-accent" : ""}
         >
           English (US)
