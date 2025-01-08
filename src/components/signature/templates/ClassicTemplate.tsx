@@ -1,6 +1,6 @@
 import React from "react";
 import { SignatureData } from "../types";
-import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram, Link } from "lucide-react";
 
 interface ClassicTemplateProps {
   data: SignatureData;
@@ -56,6 +56,19 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                 </a>
               </div>
             )}
+            {data.customLinks?.map((link, index) => (
+              <div key={index}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-gray-800 flex items-center gap-1"
+                >
+                  <Link className="w-4 h-4" />
+                  {link.label}
+                </a>
+              </div>
+            ))}
           </td>
         </tr>
         <tr>

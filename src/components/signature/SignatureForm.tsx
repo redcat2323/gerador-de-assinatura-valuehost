@@ -5,6 +5,7 @@ import { SocialLinksForm } from "./form/SocialLinksForm";
 import { MediaUploadForm } from "./form/MediaUploadForm";
 import { ColorCustomizationForm } from "./form/ColorCustomizationForm";
 import { FontCustomizationForm } from "./form/FontCustomizationForm";
+import { CustomLinksForm } from "./form/CustomLinksForm";
 
 interface SignatureFormProps {
   signatureData: SignatureData;
@@ -12,6 +13,7 @@ interface SignatureFormProps {
   onImageUpload?: (url: string, type: 'logo' | 'banner') => void;
   onColorChange?: (colorType: 'primary' | 'secondary' | 'accent', value: string) => void;
   onFontChange?: (font: string) => void;
+  onCustomLinksChange?: (links: Array<{ label: string; url: string }>) => void;
 }
 
 export const SignatureForm = ({ 
@@ -19,7 +21,8 @@ export const SignatureForm = ({
   handleInputChange,
   onImageUpload,
   onColorChange,
-  onFontChange
+  onFontChange,
+  onCustomLinksChange
 }: SignatureFormProps) => {
   const colors = {
     primary: "#1a1f2c",
@@ -53,6 +56,11 @@ export const SignatureForm = ({
       <SocialLinksForm
         signatureData={signatureData}
         handleInputChange={handleInputChange}
+      />
+
+      <CustomLinksForm
+        signatureData={signatureData}
+        onCustomLinksChange={onCustomLinksChange || (() => {})}
       />
     </div>
   );

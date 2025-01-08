@@ -20,6 +20,10 @@ export interface SignatureData {
     linkedin: string;
     instagram: string;
   };
+  customLinks?: Array<{
+    label: string;
+    url: string;
+  }>;
 }
 
 export type TemplateStyle = "classic" | "modern" | "minimal" | "professional";

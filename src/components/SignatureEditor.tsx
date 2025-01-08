@@ -31,6 +31,7 @@ const SignatureEditor = () => {
       linkedin: "",
       instagram: "",
     },
+    customLinks: [],
   });
 
   const handleInputChange = (
@@ -85,6 +86,13 @@ const SignatureEditor = () => {
     }));
   };
 
+  const handleCustomLinksChange = (links: Array<{ label: string; url: string }>) => {
+    setSignatureData((prev) => ({
+      ...prev,
+      customLinks: links,
+    }));
+  };
+
   const copySignature = () => {
     const signatureElement = document.getElementById("signature-preview");
     if (signatureElement) {
@@ -108,6 +116,7 @@ const SignatureEditor = () => {
           onImageUpload={handleImageUpload}
           onColorChange={handleColorChange}
           onFontChange={handleFontChange}
+          onCustomLinksChange={handleCustomLinksChange}
         />
         <div className="mt-8">
           <TemplateSelector
