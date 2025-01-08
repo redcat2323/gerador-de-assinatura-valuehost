@@ -101,7 +101,7 @@ export const MediaUploadForm = ({
         </div>
       </div>
 
-      <div>
+      <div className="space-y-4">
         <Label>Banner Promocional</Label>
         <div className="flex items-center gap-2">
           {signatureData.banner_url && (
@@ -127,6 +127,17 @@ export const MediaUploadForm = ({
           </Button>
         </div>
         <UploadInstructions type="banner" />
+
+        <div className="mt-2">
+          <Label>Arredondar borda do Banner</Label>
+          <Input
+            type="text"
+            placeholder="Ex: 8px ou 50%"
+            value={signatureData.banner_border_radius || ''}
+            onChange={(e) => onBorderRadiusChange('banner', e.target.value)}
+            className="w-full"
+          />
+        </div>
       </div>
     </div>
   );
