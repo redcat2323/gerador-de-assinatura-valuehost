@@ -13,7 +13,7 @@ export const CopyButtons = ({ previewId }: CopyButtonsProps) => {
 
   const copyFormattedText = async () => {
     try {
-      const previewElement = document.querySelector(`#${previewId}`);
+      const previewElement = document.querySelector(`#${previewId}`) as HTMLElement;
       if (previewElement) {
         // Cria uma seleção visual do conteúdo
         const range = document.createRange();
@@ -41,7 +41,7 @@ export const CopyButtons = ({ previewId }: CopyButtonsProps) => {
 
   const copyHtml = async () => {
     try {
-      const previewElement = document.querySelector(`#${previewId}`);
+      const previewElement = document.querySelector(`#${previewId}`) as HTMLElement;
       if (previewElement) {
         await navigator.clipboard.writeText(previewElement.innerHTML);
         toast.success(t("copiedHtml"));
