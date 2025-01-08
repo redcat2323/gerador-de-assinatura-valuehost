@@ -6,10 +6,10 @@ import { useTranslation } from "../../hooks/useTranslation";
 
 interface TemplateSelectorProps {
   selectedTemplate: string;
-  onTemplateChange: (template: TemplateStyle) => void;
+  handleTemplateChange: (template: TemplateStyle) => void;
 }
 
-export const TemplateSelector = ({ selectedTemplate, onTemplateChange }: TemplateSelectorProps) => {
+export const TemplateSelector = ({ selectedTemplate, handleTemplateChange }: TemplateSelectorProps) => {
   const { t } = useTranslation();
 
   return (
@@ -17,7 +17,7 @@ export const TemplateSelector = ({ selectedTemplate, onTemplateChange }: Templat
       <h3 className="text-lg font-medium">{t("templateStyle")}</h3>
       <RadioGroup
         value={selectedTemplate}
-        onValueChange={(value) => onTemplateChange(value as TemplateStyle)}
+        onValueChange={(value) => handleTemplateChange(value as TemplateStyle)}
         className="grid grid-cols-2 gap-4"
       >
         <div className="flex items-center space-x-2">

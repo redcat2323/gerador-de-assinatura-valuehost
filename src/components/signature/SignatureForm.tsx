@@ -10,19 +10,19 @@ import { CustomLinksForm } from "./form/CustomLinksForm";
 interface SignatureFormProps {
   signatureData: SignatureData;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>, field: string, isNested?: boolean) => void;
-  onImageUpload?: (url: string, type: 'logo' | 'banner') => void;
-  onColorChange?: (colorType: 'primary' | 'secondary' | 'accent', value: string) => void;
-  onFontChange?: (font: string) => void;
-  onCustomLinksChange?: (links: Array<{ label: string; url: string }>) => void;
+  handleImageUpload: (url: string, type: 'logo' | 'banner') => void;
+  handleColorChange: (colorType: 'primary' | 'secondary' | 'accent', value: string) => void;
+  handleFontChange: (font: string) => void;
+  handleCustomLinksChange: (links: Array<{ label: string; url: string }>) => void;
 }
 
 export const SignatureForm = ({ 
   signatureData, 
   handleInputChange,
-  onImageUpload,
-  onColorChange,
-  onFontChange,
-  onCustomLinksChange
+  handleImageUpload,
+  handleColorChange,
+  handleFontChange,
+  handleCustomLinksChange
 }: SignatureFormProps) => {
   const colors = {
     primary: "#1a1f2c",
@@ -35,17 +35,17 @@ export const SignatureForm = ({
     <div className="space-y-8">
       <MediaUploadForm
         signatureData={signatureData}
-        onImageUpload={onImageUpload || (() => {})}
+        onImageUpload={handleImageUpload}
       />
 
       <ColorCustomizationForm
         colors={colors}
-        onColorChange={onColorChange || (() => {})}
+        onColorChange={handleColorChange}
       />
 
       <FontCustomizationForm
         currentFont={signatureData.font_family || "Inter"}
-        onFontChange={onFontChange || (() => {})}
+        onFontChange={handleFontChange}
       />
 
       <BasicInfoForm
@@ -60,7 +60,7 @@ export const SignatureForm = ({
 
       <CustomLinksForm
         signatureData={signatureData}
-        onCustomLinksChange={onCustomLinksChange || (() => {})}
+        onCustomLinksChange={handleCustomLinksChange}
       />
     </div>
   );
