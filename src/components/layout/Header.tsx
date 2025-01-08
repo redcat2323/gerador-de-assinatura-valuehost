@@ -9,10 +9,23 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <img src="/favicon.ico" alt="Logo" className="w-6 h-6" />
-          <span className="font-semibold">Email Signature</span>
-        </div>
+        <a 
+          href="https://napoleon.com.br" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-2"
+        >
+          <img
+            src="https://napoleon.com.br/wp-content/uploads/2023/08/Asset-2.svg"
+            alt="Napoleon Logo"
+            className="h-8 dark:hidden"
+          />
+          <img
+            src="https://napoleon.com.br/wp-content/uploads/2023/08/Asset-4.svg"
+            alt="Napoleon Logo"
+            className="h-8 hidden dark:block"
+          />
+        </a>
         <div className="flex items-center gap-2">
           <LanguageSelector
             currentLanguage={language}
