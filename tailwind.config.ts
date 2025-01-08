@@ -25,7 +25,7 @@ export default {
         },
       },
       animation: {
-        scroll: 'scroll 30s linear infinite',
+        scroll: 'scroll 45s linear infinite',
       },
       colors: {
         border: "hsl(var(--border))",
