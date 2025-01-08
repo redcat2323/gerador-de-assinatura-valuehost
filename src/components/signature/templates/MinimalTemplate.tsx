@@ -7,41 +7,74 @@ interface MinimalTemplateProps {
 
 export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
   return (
-    <div className="font-light">
-      <p className="text-lg mb-1">{data.fullName || "Seu Nome"}</p>
-      <p className="text-sm text-gray-600 mb-2">
-        {data.jobTitle && `${data.jobTitle}`}
-        {data.company && ` @ ${data.company}`}
-      </p>
-      
-      <div className="text-sm space-y-1">
-        {data.email && (
-          <div>
-            <a href={`mailto:${data.email}`} className="text-gray-600 hover:text-primary">
-              {data.email}
-            </a>
-          </div>
+    <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
+      <tbody>
+        <tr>
+          {data.logo_url && (
+            <td style={{ verticalAlign: "top", paddingRight: "15px", width: "100px" }}>
+              <img
+                src={data.logo_url}
+                alt="Logo"
+                style={{ 
+                  width: "100px",
+                  height: "auto",
+                  display: "block",
+                  marginBottom: "10px"
+                }}
+              />
+            </td>
+          )}
+          <td style={{ verticalAlign: "top" }}>
+            <div className="font-light">
+              <p className="text-lg mb-1">{data.fullName || "Seu Nome"}</p>
+              <p className="text-sm text-gray-600 mb-2">
+                {data.jobTitle && `${data.jobTitle}`}
+                {data.company && ` @ ${data.company}`}
+              </p>
+              
+              <div className="text-sm space-y-1">
+                {data.email && (
+                  <div>
+                    <a href={`mailto:${data.email}`} className="text-gray-600 hover:text-primary">
+                      {data.email}
+                    </a>
+                  </div>
+                )}
+                {data.phone && (
+                  <div>
+                    <a href={`tel:${data.phone}`} className="text-gray-600 hover:text-primary">
+                      {data.phone}
+                    </a>
+                  </div>
+                )}
+                {data.website && (
+                  <div>
+                    <a
+                      href={data.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-primary"
+                    >
+                      {data.website}
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </td>
+        </tr>
+        {data.banner_url && (
+          <tr>
+            <td colSpan={2} style={{ paddingTop: "15px" }}>
+              <img
+                src={data.banner_url}
+                alt="Banner Promocional"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </td>
+          </tr>
         )}
-        {data.phone && (
-          <div>
-            <a href={`tel:${data.phone}`} className="text-gray-600 hover:text-primary">
-              {data.phone}
-            </a>
-          </div>
-        )}
-        {data.website && (
-          <div>
-            <a
-              href={data.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-primary"
-            >
-              {data.website}
-            </a>
-          </div>
-        )}
-      </div>
-    </div>
+      </tbody>
+    </table>
   );
 };
