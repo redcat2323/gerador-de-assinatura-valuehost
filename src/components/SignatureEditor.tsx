@@ -37,6 +37,23 @@ const SignatureEditor = () => {
     logo_border_radius: "",
     banner_border_radius: "",
     customLinks: [],
+    textFormatting: {
+      fullName: {
+        bold: false,
+        italic: false,
+        underline: false,
+      },
+      jobTitle: {
+        bold: false,
+        italic: false,
+        underline: false,
+      },
+      company: {
+        bold: false,
+        italic: false,
+        underline: false,
+      },
+    },
   });
 
   const handleInputChange = (
@@ -105,6 +122,19 @@ const SignatureEditor = () => {
     }));
   };
 
+  const handleFormatChange = (field: string, format: 'bold' | 'italic' | 'underline') => {
+    setSignatureData((prev) => ({
+      ...prev,
+      textFormatting: {
+        ...prev.textFormatting,
+        [field]: {
+          ...prev.textFormatting?.[field as keyof typeof prev.textFormatting],
+          [format]: !prev.textFormatting?.[field as keyof typeof prev.textFormatting]?.[format],
+        },
+      },
+    }));
+  };
+
   const exportSignature = () => {
     const dataStr = JSON.stringify(signatureData, null, 2);
     const dataBlob = new Blob([dataStr], { type: "application/json" });
@@ -138,6 +168,7 @@ const SignatureEditor = () => {
           handleFontChange={handleFontChange}
           handleCustomLinksChange={handleCustomLinksChange}
           handleBorderRadiusChange={handleBorderRadiusChange}
+          handleFormatChange={handleFormatChange}
         />
       </Card>
 
