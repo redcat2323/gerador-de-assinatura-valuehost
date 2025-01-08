@@ -25,7 +25,7 @@ export default {
         },
       },
       animation: {
-        scroll: 'scroll 45s linear infinite',
+        scroll: 'scroll 60s linear infinite',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -73,6 +73,7 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },
