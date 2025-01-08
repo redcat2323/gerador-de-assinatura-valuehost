@@ -32,6 +32,10 @@ export const translations = {
     copied: "Copiado!",
     copiedHtml: "HTML copiado!",
     errorCopying: "Erro ao copiar",
+    toggleTheme: "Alternar tema",
+    light: "Claro",
+    dark: "Escuro",
+    system: "Sistema",
   },
   "en-US": {
     mediaAndStyle: "Media & Style",
@@ -66,6 +70,10 @@ export const translations = {
     copied: "Copied!",
     copiedHtml: "HTML copied!",
     errorCopying: "Error copying",
+    toggleTheme: "Toggle theme",
+    light: "Light",
+    dark: "Dark",
+    system: "System",
   },
 };
 
