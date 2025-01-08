@@ -1,6 +1,7 @@
 import React from "react";
 import { Label } from "../../ui/label";
 import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 import { Upload } from "lucide-react";
 import { SignatureData } from "../types";
 import { toast } from "sonner";
@@ -10,9 +11,14 @@ import { UploadInstructions } from "./UploadInstructions";
 interface MediaUploadFormProps {
   signatureData: SignatureData;
   onImageUpload: (url: string, type: 'logo' | 'banner') => void;
+  onBorderRadiusChange: (type: 'logo' | 'banner', value: string) => void;
 }
 
-export const MediaUploadForm = ({ signatureData, onImageUpload }: MediaUploadFormProps) => {
+export const MediaUploadForm = ({ 
+  signatureData, 
+  onImageUpload,
+  onBorderRadiusChange 
+}: MediaUploadFormProps) => {
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: 'logo' | 'banner') => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -56,7 +62,7 @@ export const MediaUploadForm = ({ signatureData, onImageUpload }: MediaUploadFor
 
   return (
     <div className="space-y-4">
-      <div>
+      <div className="space-y-4">
         <Label>Logo</Label>
         <div className="flex items-center gap-2">
           {signatureData.logo_url && (
@@ -82,6 +88,17 @@ export const MediaUploadForm = ({ signatureData, onImageUpload }: MediaUploadFor
           </Button>
         </div>
         <UploadInstructions type="logo" />
+
+        <div className="mt-2">
+          <Label>Arredondar borda do Logo</Label>
+          <Input
+            type="text"
+            placeholder="Ex: 8px ou 50%"
+            value={signatureData.logo_border_radius || ''}
+            onChange={(e) => onBorderRadiusChange('logo', e.target.value)}
+            className="w-full"
+          />
+        </div>
       </div>
 
       <div>

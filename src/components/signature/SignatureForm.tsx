@@ -6,7 +6,6 @@ import { MediaUploadForm } from "./form/MediaUploadForm";
 import { ColorCustomizationForm } from "./form/ColorCustomizationForm";
 import { FontCustomizationForm } from "./form/FontCustomizationForm";
 import { CustomLinksForm } from "./form/CustomLinksForm";
-import { BorderRadiusForm } from "./form/BorderRadiusForm";
 
 interface SignatureFormProps {
   signatureData: SignatureData;
@@ -36,17 +35,11 @@ export const SignatureForm = ({
 
   return (
     <div className="space-y-8">
-      <div className="space-y-4">
-        <MediaUploadForm
-          signatureData={signatureData}
-          onImageUpload={handleImageUpload}
-        />
-
-        <BorderRadiusForm
-          signatureData={signatureData}
-          onBorderRadiusChange={handleBorderRadiusChange}
-        />
-      </div>
+      <MediaUploadForm
+        signatureData={signatureData}
+        onImageUpload={handleImageUpload}
+        onBorderRadiusChange={handleBorderRadiusChange}
+      />
 
       <ColorCustomizationForm
         colors={colors}
