@@ -1,3 +1,7 @@
+export type Language = "pt-BR" | "en-US";
+
+export type TranslationKey = keyof (typeof translations)["pt-BR"];
+
 export const translations = {
   "pt-BR": {
     basicInfo: "Informações Básicas",
@@ -38,7 +42,11 @@ export const translations = {
     errorImport: "Erro ao importar arquivo",
     successImport: "Assinatura importada com sucesso!",
     borderRadius: "Borda Arredondada",
-    finishMessage: "Sua assinatura está pronta! Agora você pode copiá-la usando os botões acima."
+    finishMessage: "Sua assinatura está pronta! Agora você pode copiá-la usando os botões acima.",
+    toggleTheme: "Alternar tema",
+    light: "Claro",
+    dark: "Escuro",
+    system: "Sistema"
   },
   "en-US": {
     basicInfo: "Basic Information",
@@ -79,6 +87,10 @@ export const translations = {
     errorImport: "Error importing file",
     successImport: "Signature imported successfully!",
     borderRadius: "Border Radius",
-    finishMessage: "Your signature is ready! You can now copy it using the buttons above."
+    finishMessage: "Your signature is ready! You can now copy it using the buttons above.",
+    toggleTheme: "Toggle theme",
+    light: "Light",
+    dark: "Dark",
+    system: "System"
   }
-};
+} as const;
