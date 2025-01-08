@@ -2,6 +2,7 @@ import React from "react";
 import { ModeToggle } from "./ModeToggle";
 import { LanguageSelector } from "../LanguageSelector";
 import { useTranslation } from "../../hooks/useTranslation";
+import { ScrollingBanner } from "./ScrollingBanner";
 
 export const Header = () => {
   const { language, changeLanguage } = useTranslation();
@@ -34,6 +35,7 @@ export const Header = () => {
           <ModeToggle />
         </div>
       </div>
+      <ScrollingBanner />
     </header>
   );
 };
