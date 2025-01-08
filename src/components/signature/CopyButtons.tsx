@@ -15,26 +15,49 @@ export const CopyButtons = ({ previewId }: CopyButtonsProps) => {
     try {
       const previewElement = document.querySelector(`#${previewId}`) as HTMLElement;
       if (previewElement) {
-        // Cria uma seleção visual do conteúdo
+        // Create a temporary container to hold the cloned content
+        const tempContainer = document.createElement('div');
+        const clone = previewElement.cloneNode(true) as HTMLElement;
+        tempContainer.appendChild(clone);
+        
+        // Apply computed styles to the cloned content
+        const computedStyle = window.getComputedStyle(previewElement);
+        clone.style.cssText = computedStyle.cssText;
+        
+        // Create a selection range for the cloned content
         const range = document.createRange();
         range.selectNodeContents(previewElement);
         const selection = window.getSelection();
+        
         if (selection) {
+          // Clear any existing selection
           selection.removeAllRanges();
+          // Add our new range
           selection.addRange(range);
           
-          // Copia o conteúdo formatado
-          await navigator.clipboard.writeText(previewElement.innerText);
+          try {
+            // Try to copy with the new Clipboard API
+            await navigator.clipboard.write([
+              new ClipboardItem({
+                'text/html': new Blob([previewElement.outerHTML], { type: 'text/html' }),
+                'text/plain': new Blob([previewElement.innerText], { type: 'text/plain' })
+              })
+            ]);
+            toast.success(t("copied"));
+          } catch (clipboardError) {
+            // Fallback to the older execCommand method
+            document.execCommand('copy');
+            toast.success(t("copied"));
+          }
           
-          // Remove a seleção após um breve momento
+          // Clear the selection after a brief moment
           setTimeout(() => {
             selection.removeAllRanges();
-          }, 500);
-          
-          toast.success(t("copied"));
+          }, 100);
         }
       }
     } catch (error) {
+      console.error('Copy error:', error);
       toast.error(t("errorCopying"));
     }
   };
@@ -47,6 +70,7 @@ export const CopyButtons = ({ previewId }: CopyButtonsProps) => {
         toast.success(t("copiedHtml"));
       }
     } catch (error) {
+      console.error('Copy HTML error:', error);
       toast.error(t("errorCopying"));
     }
   };
