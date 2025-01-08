@@ -19,6 +19,11 @@ const SignatureEditor = () => {
     templateStyle: "classic",
     logo_url: "",
     banner_url: "",
+    colors: {
+      primary: "#1a1f2c",
+      secondary: "#8e9196",
+      accent: "#9b87f5",
+    },
     social: {
       facebook: "",
       twitter: "",
@@ -62,6 +67,16 @@ const SignatureEditor = () => {
     }));
   };
 
+  const handleColorChange = (colorType: 'primary' | 'secondary' | 'accent', value: string) => {
+    setSignatureData((prev) => ({
+      ...prev,
+      colors: {
+        ...prev.colors,
+        [colorType]: value,
+      },
+    }));
+  };
+
   const copySignature = () => {
     const signatureElement = document.getElementById("signature-preview");
     if (signatureElement) {
@@ -83,6 +98,7 @@ const SignatureEditor = () => {
           signatureData={signatureData}
           handleInputChange={handleInputChange}
           onImageUpload={handleImageUpload}
+          onColorChange={handleColorChange}
         />
         <div className="mt-8">
           <TemplateSelector
