@@ -8,6 +8,18 @@ interface ClassicTemplateProps {
 }
 
 export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
+  const getFormattedText = (text: string, formatting?: { bold?: boolean; italic?: boolean; underline?: boolean }) => {
+    if (!formatting) return text;
+
+    const styles: React.CSSProperties = {
+      fontWeight: formatting.bold ? 'bold' : 'normal',
+      fontStyle: formatting.italic ? 'italic' : 'normal',
+      textDecoration: formatting.underline ? 'underline' : 'none',
+    };
+
+    return <span style={styles}>{text}</span>;
+  };
+
   return (
     <table cellPadding="0" cellSpacing="0" style={{ width: "100%", maxWidth: "600px", fontFamily: data.font_family || "Arial, sans-serif" }}>
       <tbody>
@@ -40,11 +52,10 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                                   <td style={{ paddingBottom: "10px" }}>
                                     <span style={{ 
                                       fontSize: "20px", 
-                                      fontWeight: "bold",
                                       color: data.colors?.primary || "#1a1f2c",
                                       letterSpacing: "0.5px"
                                     }}>
-                                      {data.fullName || "Seu Nome"}
+                                      {getFormattedText(data.fullName || "Seu Nome", data.textFormatting?.fullName)}
                                     </span>
                                   </td>
                                 </tr>
@@ -54,10 +65,10 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                                       <span style={{ 
                                         fontSize: "14px",
                                         color: data.colors?.secondary || "#8e9196",
-                                        fontStyle: "italic"
                                       }}>
-                                        {data.jobTitle}
-                                        {data.company && ` @ ${data.company}`}
+                                        {getFormattedText(data.jobTitle, data.textFormatting?.jobTitle)}
+                                        {data.company && " @ "}
+                                        {data.company && getFormattedText(data.company, data.textFormatting?.company)}
                                       </span>
                                     </td>
                                   </tr>

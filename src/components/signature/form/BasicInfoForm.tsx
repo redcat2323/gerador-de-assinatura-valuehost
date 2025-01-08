@@ -3,14 +3,51 @@ import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { SignatureData } from "../types";
 import { useTranslation } from "../../../hooks/useTranslation";
+import { Button } from "../../ui/button";
+import { Bold, Italic, Underline } from "lucide-react";
+import { Toggle } from "../../ui/toggle";
 
 interface BasicInfoFormProps {
   signatureData: SignatureData;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>, field: string) => void;
+  handleFormatChange?: (field: string, format: 'bold' | 'italic' | 'underline') => void;
 }
 
-export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFormProps) => {
+export const BasicInfoForm = ({ signatureData, handleInputChange, handleFormatChange }: BasicInfoFormProps) => {
   const { t } = useTranslation();
+
+  const renderFormatControls = (field: 'fullName' | 'jobTitle' | 'company') => {
+    const formatting = signatureData.textFormatting?.[field] || {};
+    
+    return (
+      <div className="flex gap-2 mt-1">
+        <Toggle
+          size="sm"
+          pressed={formatting.bold}
+          onPressedChange={() => handleFormatChange?.(field, 'bold')}
+          aria-label="Toggle bold"
+        >
+          <Bold className="h-4 w-4" />
+        </Toggle>
+        <Toggle
+          size="sm"
+          pressed={formatting.italic}
+          onPressedChange={() => handleFormatChange?.(field, 'italic')}
+          aria-label="Toggle italic"
+        >
+          <Italic className="h-4 w-4" />
+        </Toggle>
+        <Toggle
+          size="sm"
+          pressed={formatting.underline}
+          onPressedChange={() => handleFormatChange?.(field, 'underline')}
+          aria-label="Toggle underline"
+        >
+          <Underline className="h-4 w-4" />
+        </Toggle>
+      </div>
+    );
+  };
 
   return (
     <div className="space-y-4">
@@ -22,6 +59,7 @@ export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFor
           onChange={(e) => handleInputChange(e, "fullName")}
           placeholder="João Silva"
         />
+        {renderFormatControls('fullName')}
       </div>
 
       <div>
@@ -32,6 +70,7 @@ export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFor
           onChange={(e) => handleInputChange(e, "jobTitle")}
           placeholder="Desenvolvedor Frontend"
         />
+        {renderFormatControls('jobTitle')}
       </div>
 
       <div>
@@ -42,6 +81,7 @@ export const BasicInfoForm = ({ signatureData, handleInputChange }: BasicInfoFor
           onChange={(e) => handleInputChange(e, "company")}
           placeholder="Empresa Tech"
         />
+        {renderFormatControls('company')}
       </div>
 
       <div>

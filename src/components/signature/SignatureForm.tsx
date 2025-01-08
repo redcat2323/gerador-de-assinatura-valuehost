@@ -8,7 +8,7 @@ import { FontCustomizationForm } from "./form/FontCustomizationForm";
 import { CustomLinksForm } from "./form/CustomLinksForm";
 import { Button } from "../ui/button";
 import { useTranslation } from "../../hooks/useTranslation";
-import { ChevronLeft, ChevronRight, Check, Copy } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { Alert, AlertDescription } from "../ui/alert";
 
 interface SignatureFormProps {
@@ -26,6 +26,7 @@ interface SignatureFormProps {
   handleFontChange: (font: string) => void;
   handleCustomLinksChange: (links: Array<{ label: string; url: string }>) => void;
   handleBorderRadiusChange: (type: "logo" | "banner", value: string) => void;
+  handleFormatChange: (field: string, format: 'bold' | 'italic' | 'underline') => void;
 }
 
 export const SignatureForm = ({
@@ -36,6 +37,7 @@ export const SignatureForm = ({
   handleFontChange,
   handleCustomLinksChange,
   handleBorderRadiusChange,
+  handleFormatChange,
 }: SignatureFormProps) => {
   const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
@@ -74,6 +76,7 @@ export const SignatureForm = ({
             <BasicInfoForm
               signatureData={signatureData}
               handleInputChange={handleInputChange}
+              handleFormatChange={handleFormatChange}
             />
           </div>
         );
@@ -143,7 +146,6 @@ export const SignatureForm = ({
 
   return (
     <div className="space-y-8">
-      {/* Progress Bar */}
       <div className="w-full bg-secondary/20 h-2 rounded-full overflow-hidden">
         <div
           className="h-full bg-primary transition-all duration-300 ease-in-out"
@@ -151,12 +153,10 @@ export const SignatureForm = ({
         />
       </div>
 
-      {/* Step Content */}
       <div className="min-h-[400px]">
         {renderStepContent()}
       </div>
 
-      {/* Navigation Buttons */}
       <div className="flex justify-between pt-4">
         <Button
           variant="outline"

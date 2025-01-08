@@ -26,6 +26,23 @@ export interface SignatureData {
     label: string;
     url: string;
   }>;
+  textFormatting?: {
+    fullName?: {
+      bold?: boolean;
+      italic?: boolean;
+      underline?: boolean;
+    };
+    jobTitle?: {
+      bold?: boolean;
+      italic?: boolean;
+      underline?: boolean;
+    };
+    company?: {
+      bold?: boolean;
+      italic?: boolean;
+      underline?: boolean;
+    };
+  };
 }
 
 export type TemplateStyle = "classic" | "modern" | "minimal" | "professional";
