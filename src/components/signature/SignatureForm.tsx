@@ -36,15 +36,17 @@ export const SignatureForm = ({
 
   return (
     <div className="space-y-8">
-      <MediaUploadForm
-        signatureData={signatureData}
-        onImageUpload={handleImageUpload}
-      />
+      <div className="space-y-4">
+        <MediaUploadForm
+          signatureData={signatureData}
+          onImageUpload={handleImageUpload}
+        />
 
-      <BorderRadiusForm
-        signatureData={signatureData}
-        onBorderRadiusChange={handleBorderRadiusChange}
-      />
+        <BorderRadiusForm
+          signatureData={signatureData}
+          onBorderRadiusChange={handleBorderRadiusChange}
+        />
+      </div>
 
       <ColorCustomizationForm
         colors={colors}
