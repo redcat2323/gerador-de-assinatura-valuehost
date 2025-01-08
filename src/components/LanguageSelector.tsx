@@ -19,7 +19,7 @@ export const LanguageSelector = ({
   onLanguageChange,
 }: LanguageSelectorProps) => {
   const handleLanguageChange = (language: Language) => {
-    console.log("Changing language to:", language); // Debug log
+    console.log("Language selector changing to:", language);
     onLanguageChange(language);
   };
 
