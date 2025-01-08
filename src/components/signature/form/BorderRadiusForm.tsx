@@ -12,7 +12,7 @@ export const BorderRadiusForm = ({ signatureData, onBorderRadiusChange }: Border
   return (
     <div className="space-y-4">
       <div>
-        <Label>Logo Border Radius</Label>
+        <Label>Arredondar borda do Logo</Label>
         <div className="flex items-center gap-2">
           <Input
             type="text"
@@ -25,7 +25,7 @@ export const BorderRadiusForm = ({ signatureData, onBorderRadiusChange }: Border
       </div>
 
       <div>
-        <Label>Banner Border Radius</Label>
+        <Label>Arredondar borda do Banner</Label>
         <div className="flex items-center gap-2">
           <Input
             type="text"
