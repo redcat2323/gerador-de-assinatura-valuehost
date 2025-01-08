@@ -12,7 +12,7 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
     <table cellPadding="0" cellSpacing="0" style={{ width: "100%", maxWidth: "600px", fontFamily: data.font_family || "Arial, sans-serif" }}>
       <tbody>
         <tr>
-          <td style={{ padding: "0" }}>
+          <td style={{ padding: "20px", borderLeft: `3px solid ${data.colors?.accent || "#9b87f5"}` }}>
             <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
               <tbody>
                 <tr>
@@ -21,7 +21,7 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                       <tbody>
                         <tr>
                           {data.logo_url && (
-                            <td style={{ verticalAlign: "top", paddingRight: "15px", width: "150px" }}>
+                            <td style={{ verticalAlign: "top", paddingRight: "20px", width: "150px" }}>
                               <img
                                 src={data.logo_url}
                                 alt="Logo"
@@ -39,9 +39,10 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                                 <tr>
                                   <td style={{ paddingBottom: "10px" }}>
                                     <span style={{ 
-                                      fontSize: "18px", 
+                                      fontSize: "20px", 
                                       fontWeight: "bold",
-                                      color: data.colors?.primary || "#1a1f2c"
+                                      color: data.colors?.primary || "#1a1f2c",
+                                      letterSpacing: "0.5px"
                                     }}>
                                       {data.fullName || "Seu Nome"}
                                     </span>
@@ -49,10 +50,11 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                                 </tr>
                                 {(data.jobTitle || data.company) && (
                                   <tr>
-                                    <td style={{ paddingBottom: "10px" }}>
+                                    <td style={{ paddingBottom: "15px" }}>
                                       <span style={{ 
                                         fontSize: "14px",
-                                        color: data.colors?.secondary || "#8e9196"
+                                        color: data.colors?.secondary || "#8e9196",
+                                        fontStyle: "italic"
                                       }}>
                                         {data.jobTitle}
                                         {data.company && ` @ ${data.company}`}
@@ -66,7 +68,7 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                                   </td>
                                 </tr>
                                 <tr>
-                                  <td style={{ paddingTop: "10px" }}>
+                                  <td style={{ paddingTop: "15px" }}>
                                     <SocialIcons social={data.social} colors={data.colors} />
                                   </td>
                                 </tr>
@@ -80,7 +82,7 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                 </tr>
                 {data.banner_url && (
                   <tr>
-                    <td style={{ paddingTop: "15px" }}>
+                    <td style={{ paddingTop: "20px" }}>
                       <img
                         src={data.banner_url}
                         alt="Banner Promocional"

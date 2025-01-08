@@ -20,58 +20,45 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
                     <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
                       <tbody>
                         <tr>
-                          {data.logo_url && (
-                            <td style={{ verticalAlign: "top", paddingRight: "15px", width: "150px" }}>
+                          <td style={{ borderBottom: `1px solid ${data.colors?.secondary}30`, paddingBottom: "15px" }}>
+                            <span style={{ 
+                              fontSize: "16px",
+                              color: data.colors?.primary || "#1a1f2c",
+                              fontWeight: "500"
+                            }}>
+                              {data.fullName || "Seu Nome"}
+                            </span>
+                            {(data.jobTitle || data.company) && (
+                              <span style={{ 
+                                fontSize: "14px",
+                                color: data.colors?.secondary || "#8e9196",
+                                marginLeft: "10px"
+                              }}>
+                                {data.jobTitle}
+                                {data.company && ` @ ${data.company}`}
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style={{ paddingTop: "15px", display: "flex", alignItems: "center", gap: "15px" }}>
+                            {data.logo_url && (
                               <img
                                 src={data.logo_url}
                                 alt="Logo"
                                 style={{ 
-                                  maxWidth: "150px", 
+                                  maxWidth: "100px", 
                                   height: "auto",
                                   borderRadius: data.logo_border_radius || "0"
                                 }}
                               />
-                            </td>
-                          )}
-                          <td style={{ verticalAlign: "top" }}>
-                            <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
-                              <tbody>
-                                <tr>
-                                  <td style={{ paddingBottom: "5px" }}>
-                                    <span style={{ 
-                                      fontSize: "16px",
-                                      color: data.colors?.primary || "#1a1f2c",
-                                      fontWeight: "normal"
-                                    }}>
-                                      {data.fullName || "Seu Nome"}
-                                    </span>
-                                  </td>
-                                </tr>
-                                {(data.jobTitle || data.company) && (
-                                  <tr>
-                                    <td style={{ paddingBottom: "10px" }}>
-                                      <span style={{ 
-                                        fontSize: "14px",
-                                        color: data.colors?.secondary || "#8e9196"
-                                      }}>
-                                        {data.jobTitle}
-                                        {data.company && ` @ ${data.company}`}
-                                      </span>
-                                    </td>
-                                  </tr>
-                                )}
-                                <tr>
-                                  <td>
-                                    <ContactInfo data={data} />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td style={{ paddingTop: "10px" }}>
-                                    <SocialIcons social={data.social} colors={data.colors} />
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
+                            )}
+                            <div>
+                              <ContactInfo data={data} />
+                              <div style={{ marginTop: "10px" }}>
+                                <SocialIcons social={data.social} colors={data.colors} />
+                              </div>
+                            </div>
                           </td>
                         </tr>
                       </tbody>
@@ -89,7 +76,8 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
                           maxWidth: "600px",
                           height: "auto",
                           display: "block",
-                          borderRadius: data.banner_border_radius || "0"
+                          borderRadius: data.banner_border_radius || "0",
+                          opacity: "0.95"
                         }}
                       />
                     </td>

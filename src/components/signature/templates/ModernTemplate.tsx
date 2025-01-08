@@ -9,57 +9,56 @@ interface ModernTemplateProps {
 
 export const ModernTemplate = ({ data }: ModernTemplateProps) => {
   return (
-    <table cellPadding="0" cellSpacing="0" style={{ 
-      width: "100%", 
-      maxWidth: "600px", 
-      fontFamily: data.font_family || "Arial, sans-serif" 
-    }}>
+    <table cellPadding="0" cellSpacing="0" style={{ width: "100%", maxWidth: "600px", fontFamily: data.font_family || "Arial, sans-serif" }}>
       <tbody>
         <tr>
-          <td style={{ padding: "20px", backgroundColor: "#ffffff" }}>
+          <td style={{ 
+            padding: "25px", 
+            background: `linear-gradient(to right, ${data.colors?.accent}15, transparent)`,
+            borderRadius: "8px"
+          }}>
             <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
               <tbody>
                 <tr>
                   <td>
                     <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
                       <tbody>
-                        <tr>
-                          {data.logo_url && (
-                            <td style={{ verticalAlign: "top", paddingRight: "15px", width: "150px" }}>
+                        {data.logo_url && (
+                          <tr>
+                            <td style={{ paddingBottom: "20px" }}>
                               <img
                                 src={data.logo_url}
                                 alt="Logo"
                                 style={{ 
-                                  maxWidth: "150px", 
+                                  maxWidth: "180px", 
                                   height: "auto",
                                   borderRadius: data.logo_border_radius || "0"
                                 }}
                               />
                             </td>
-                          )}
-                          <td style={{ 
-                            verticalAlign: "top",
-                            borderLeft: `4px solid ${data.colors?.accent || "#9b87f5"}`,
-                            paddingLeft: "15px"
-                          }}>
+                          </tr>
+                        )}
+                        <tr>
+                          <td>
                             <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
                               <tbody>
                                 <tr>
                                   <td style={{ paddingBottom: "10px" }}>
                                     <span style={{ 
-                                      fontSize: "18px", 
-                                      fontWeight: "bold",
+                                      fontSize: "24px", 
+                                      fontWeight: "600",
                                       color: data.colors?.primary || "#1a1f2c",
-                                      display: "block"
+                                      display: "block",
+                                      letterSpacing: "0.5px"
                                     }}>
                                       {data.fullName || "Seu Nome"}
                                     </span>
                                     {(data.jobTitle || data.company) && (
                                       <span style={{ 
-                                        fontSize: "14px",
+                                        fontSize: "15px",
                                         color: data.colors?.secondary || "#8e9196",
                                         display: "block",
-                                        paddingTop: "4px"
+                                        marginTop: "4px"
                                       }}>
                                         {data.jobTitle}
                                         {data.company && ` @ ${data.company}`}
@@ -68,12 +67,12 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                                   </td>
                                 </tr>
                                 <tr>
-                                  <td>
+                                  <td style={{ paddingBottom: "15px" }}>
                                     <ContactInfo data={data} />
                                   </td>
                                 </tr>
                                 <tr>
-                                  <td style={{ paddingTop: "10px" }}>
+                                  <td>
                                     <SocialIcons social={data.social} colors={data.colors} />
                                   </td>
                                 </tr>
@@ -87,7 +86,7 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                 </tr>
                 {data.banner_url && (
                   <tr>
-                    <td style={{ paddingTop: "15px" }}>
+                    <td style={{ paddingTop: "20px" }}>
                       <img
                         src={data.banner_url}
                         alt="Banner Promocional"
@@ -96,7 +95,8 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                           maxWidth: "600px",
                           height: "auto",
                           display: "block",
-                          borderRadius: data.banner_border_radius || "0"
+                          borderRadius: data.banner_border_radius || "0",
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
                         }}
                       />
                     </td>
