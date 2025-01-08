@@ -7,6 +7,7 @@ import { SignatureForm } from "./signature/SignatureForm";
 import { SignaturePreview } from "./signature/SignaturePreview";
 import { TemplateSelector } from "./signature/TemplateSelector";
 import { useTranslation } from "../hooks/useTranslation";
+import { TemplateStyle } from "./signature/types";
 
 const SignatureEditor = () => {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ const SignatureEditor = () => {
     email: "",
     phone: "",
     website: "",
-    templateStyle: "classic",
+    templateStyle: "classic" as TemplateStyle,
     social: {
       facebook: "",
       twitter: "",
@@ -184,10 +185,10 @@ const SignatureEditor = () => {
         <SignatureForm
           signatureData={signatureData}
           handleInputChange={handleInputChange}
-          onImageUpload={onImageUpload}
-          onColorChange={onColorChange}
-          onFontChange={onFontChange}
-          onCustomLinksChange={onCustomLinksChange}
+          handleImageUpload={handleImageUpload}
+          handleColorChange={handleColorChange}
+          handleFontChange={handleFontChange}
+          handleCustomLinksChange={handleCustomLinksChange}
         />
       </Card>
 
@@ -203,7 +204,7 @@ const SignatureEditor = () => {
 
           <TemplateSelector
             selectedTemplate={signatureData.templateStyle}
-            onTemplateChange={onTemplateChange}
+            handleTemplateChange={handleTemplateChange}
           />
 
           <div

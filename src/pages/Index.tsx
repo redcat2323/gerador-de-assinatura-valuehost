@@ -1,5 +1,5 @@
 import SignatureEditor from "@/components/SignatureEditor";
-import Header from "@/components/layout/Header";
+import { Header } from "@/components/layout/Header";
 
 const Index = () => {
   return (
