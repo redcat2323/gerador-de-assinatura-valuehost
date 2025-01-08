@@ -92,7 +92,7 @@ export const MediaUploadForm = ({
         <Label>Logo</Label>
         <div className="flex items-center gap-2">
           {signatureData.logo_url && (
-            <div className="relative group">
+            <div className="relative">
               <img 
                 src={signatureData.logo_url} 
                 alt="Logo" 
@@ -101,7 +101,7 @@ export const MediaUploadForm = ({
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute -top-2 -right-2 h-6 w-6 bg-destructive text-destructive-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute -top-2 -right-2 h-6 w-6 bg-destructive text-destructive-foreground"
                 onClick={() => handleImageRemove('logo')}
               >
                 <Trash2 className="h-4 w-4" />
@@ -141,7 +141,7 @@ export const MediaUploadForm = ({
         <Label>Banner Promocional</Label>
         <div className="flex items-center gap-2">
           {signatureData.banner_url && (
-            <div className="relative group">
+            <div className="relative">
               <img 
                 src={signatureData.banner_url} 
                 alt="Banner" 
@@ -150,7 +150,7 @@ export const MediaUploadForm = ({
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute -top-2 -right-2 h-6 w-6 bg-destructive text-destructive-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute -top-2 -right-2 h-6 w-6 bg-destructive text-destructive-foreground"
                 onClick={() => handleImageRemove('banner')}
               >
                 <Trash2 className="h-4 w-4" />
