@@ -5,6 +5,7 @@ import { Upload } from "lucide-react";
 import { SignatureData } from "../types";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { UploadInstructions } from "./UploadInstructions";
 
 interface MediaUploadFormProps {
   signatureData: SignatureData;
@@ -15,6 +16,18 @@ export const MediaUploadForm = ({ signatureData, onImageUpload }: MediaUploadFor
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: 'logo' | 'banner') => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    // Validar tamanho do arquivo (1MB)
+    if (file.size > 1024 * 1024) {
+      toast.error('O arquivo deve ter no máximo 1MB');
+      return;
+    }
+
+    // Validar tipo do arquivo
+    if (!file.type.startsWith('image/')) {
+      toast.error('Apenas imagens são permitidas');
+      return;
+    }
 
     const formData = new FormData();
     formData.append('file', file);
@@ -68,6 +81,7 @@ export const MediaUploadForm = ({ signatureData, onImageUpload }: MediaUploadFor
             Upload Logo
           </Button>
         </div>
+        <UploadInstructions type="logo" />
       </div>
 
       <div>
@@ -95,6 +109,7 @@ export const MediaUploadForm = ({ signatureData, onImageUpload }: MediaUploadFor
             Upload Banner
           </Button>
         </div>
+        <UploadInstructions type="banner" />
       </div>
     </div>
   );
