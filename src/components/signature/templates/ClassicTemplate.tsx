@@ -8,22 +8,23 @@ interface ClassicTemplateProps {
 
 export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
   return (
-    <table cellPadding="0" cellSpacing="0">
+    <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
       <tbody>
         <tr>
-          <td style={{ verticalAlign: "top", paddingRight: "15px" }}>
-            {data.logo_url && (
+          {data.logo_url && (
+            <td style={{ verticalAlign: "top", paddingRight: "15px", width: "100px" }}>
               <img
                 src={data.logo_url}
                 alt="Logo"
                 style={{ 
-                  maxWidth: "100px",
+                  width: "100px",
                   height: "auto",
+                  display: "block",
                   marginBottom: "10px"
                 }}
               />
-            )}
-          </td>
+            </td>
+          )}
           <td style={{ verticalAlign: "top" }}>
             <strong className="text-lg text-primary">
               {data.fullName || "Seu Nome"}
@@ -128,7 +129,7 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
               <img
                 src={data.banner_url}
                 alt="Banner Promocional"
-                style={{ maxWidth: "100%", height: "auto" }}
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
             </td>
           </tr>
