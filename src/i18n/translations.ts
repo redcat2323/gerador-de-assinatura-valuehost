@@ -52,7 +52,9 @@ export const translations = {
     classic: "Clássico",
     modern: "Moderno",
     minimal: "Minimalista",
-    professional: "Profissional"
+    professional: "Profissional",
+    pageTitle: "Gerador de Assinatura de E-mail",
+    pageSubtitle: "Crie uma assinatura de e-mail profissional em poucos minutos. Personalize modelos prontos com suas informações e estilo."
   },
   "en-US": {
     basicInfo: "Basic Information",
@@ -103,6 +105,8 @@ export const translations = {
     classic: "Classic",
     modern: "Modern",
     minimal: "Minimal",
-    professional: "Professional"
+    professional: "Professional",
+    pageTitle: "Email Signature Generator",
+    pageSubtitle: "Create a professional email signature in minutes. Customize ready-made templates with your information and style."
   }
 } as const;
