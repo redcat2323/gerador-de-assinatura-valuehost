@@ -6,6 +6,8 @@ export interface SignatureData {
   phone: string;
   website: string;
   templateStyle: string;
+  logo_url?: string;
+  banner_url?: string;
   social: {
     facebook: string;
     twitter: string;

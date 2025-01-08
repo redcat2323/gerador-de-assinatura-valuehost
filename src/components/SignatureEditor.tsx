@@ -17,6 +17,8 @@ const SignatureEditor = () => {
     phone: "",
     website: "",
     templateStyle: "classic",
+    logo_url: "",
+    banner_url: "",
     social: {
       facebook: "",
       twitter: "",
@@ -53,6 +55,13 @@ const SignatureEditor = () => {
     }));
   };
 
+  const handleImageUpload = (url: string, type: 'logo' | 'banner') => {
+    setSignatureData((prev) => ({
+      ...prev,
+      [type === 'logo' ? 'logo_url' : 'banner_url']: url,
+    }));
+  };
+
   const copySignature = () => {
     const signatureElement = document.getElementById("signature-preview");
     if (signatureElement) {
@@ -73,6 +82,7 @@ const SignatureEditor = () => {
         <SignatureForm
           signatureData={signatureData}
           handleInputChange={handleInputChange}
+          onImageUpload={handleImageUpload}
         />
         <div className="mt-8">
           <TemplateSelector
