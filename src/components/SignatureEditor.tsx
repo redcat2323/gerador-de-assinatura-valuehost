@@ -19,6 +19,7 @@ const SignatureEditor = () => {
     templateStyle: "classic",
     logo_url: "",
     banner_url: "",
+    font_family: "Inter",
     colors: {
       primary: "#1a1f2c",
       secondary: "#8e9196",
@@ -77,6 +78,13 @@ const SignatureEditor = () => {
     }));
   };
 
+  const handleFontChange = (font: string) => {
+    setSignatureData((prev) => ({
+      ...prev,
+      font_family: font,
+    }));
+  };
+
   const copySignature = () => {
     const signatureElement = document.getElementById("signature-preview");
     if (signatureElement) {
@@ -99,6 +107,7 @@ const SignatureEditor = () => {
           handleInputChange={handleInputChange}
           onImageUpload={handleImageUpload}
           onColorChange={handleColorChange}
+          onFontChange={handleFontChange}
         />
         <div className="mt-8">
           <TemplateSelector
@@ -118,7 +127,11 @@ const SignatureEditor = () => {
             </Button>
           </div>
 
-          <div id="signature-preview" className="p-4 border rounded-md bg-white">
+          <div 
+            id="signature-preview" 
+            className="p-4 border rounded-md bg-white"
+            style={{ fontFamily: signatureData.font_family }}
+          >
             <SignaturePreview signatureData={signatureData} />
           </div>
         </Card>

@@ -8,6 +8,7 @@ export interface SignatureData {
   templateStyle: string;
   logo_url?: string;
   banner_url?: string;
+  font_family?: string;
   colors?: {
     primary: string;
     secondary: string;
