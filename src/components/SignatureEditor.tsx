@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
-import { Copy } from "lucide-react";
+import { Copy, Download, Upload } from "lucide-react";
 import { toast } from "sonner";
 import { SignatureForm } from "./signature/SignatureForm";
 import { SignaturePreview } from "./signature/SignaturePreview";
@@ -33,6 +33,8 @@ const SignatureEditor = () => {
     },
     customLinks: [],
   });
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -106,10 +108,80 @@ const SignatureEditor = () => {
     }
   };
 
+  const exportSignature = () => {
+    const dataStr = JSON.stringify(signatureData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `signature-${signatureData.fullName || 'export'}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    toast.success("Assinatura exportada com sucesso!");
+  };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const importSignature = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const importedData = JSON.parse(e.target?.result as string);
+        
+        // Validação básica dos campos obrigatórios
+        if (
+          typeof importedData === 'object' &&
+          'fullName' in importedData &&
+          'social' in importedData &&
+          'colors' in importedData
+        ) {
+          setSignatureData(importedData);
+          toast.success("Assinatura importada com sucesso!");
+        } else {
+          toast.error("Arquivo de assinatura inválido!");
+        }
+      } catch (error) {
+        toast.error("Erro ao importar assinatura!");
+      }
+    };
+    reader.readAsText(file);
+    
+    // Limpa o input para permitir importar o mesmo arquivo novamente
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   return (
     <div className="flex flex-col lg:flex-row gap-8 p-6 max-w-7xl mx-auto">
       <Card className="flex-1 p-6 bg-editor border-editor-border">
-        <h2 className="text-2xl font-semibold mb-6">Informações Básicas</h2>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold">Informações Básicas</h2>
+          <div className="flex gap-2">
+            <Button onClick={handleImportClick} variant="outline" size="sm">
+              <Upload className="w-4 h-4 mr-2" />
+              Importar
+            </Button>
+            <Button onClick={exportSignature} variant="outline" size="sm">
+              <Download className="w-4 h-4 mr-2" />
+              Exportar
+            </Button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={importSignature}
+              accept=".json"
+              className="hidden"
+            />
+          </div>
+        </div>
         <SignatureForm
           signatureData={signatureData}
           handleInputChange={handleInputChange}
