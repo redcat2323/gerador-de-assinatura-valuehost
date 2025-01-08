@@ -2,7 +2,7 @@ import React from "react";
 import { Label } from "../../ui/label";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
-import { Upload } from "lucide-react";
+import { Upload, Trash2 } from "lucide-react";
 import { SignatureData } from "../types";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -60,17 +60,53 @@ export const MediaUploadForm = ({
     e.target.value = '';
   };
 
+  const handleImageRemove = async (type: 'logo' | 'banner') => {
+    try {
+      const imageUrl = type === 'logo' ? signatureData.logo_url : signatureData.banner_url;
+      if (!imageUrl) return;
+
+      // Extract the file path from the URL
+      const urlParts = imageUrl.split('/');
+      const filePath = urlParts[urlParts.length - 1];
+
+      const { error: deleteError } = await supabase.storage
+        .from('signatures')
+        .remove([filePath]);
+
+      if (deleteError) {
+        throw deleteError;
+      }
+
+      // Update the signature data to remove the image URL
+      onImageUpload('', type);
+      toast.success(`${type === 'logo' ? 'Logo' : 'Banner'} removido com sucesso!`);
+    } catch (error) {
+      console.error('Erro ao remover imagem:', error);
+      toast.error('Erro ao remover a imagem');
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div className="space-y-4">
         <Label>Logo</Label>
         <div className="flex items-center gap-2">
           {signatureData.logo_url && (
-            <img 
-              src={signatureData.logo_url} 
-              alt="Logo" 
-              className="w-10 h-10 object-contain"
-            />
+            <div className="relative group">
+              <img 
+                src={signatureData.logo_url} 
+                alt="Logo" 
+                className="w-10 h-10 object-contain"
+              />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute -top-2 -right-2 h-6 w-6 bg-destructive text-destructive-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={() => handleImageRemove('logo')}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
           )}
           <Button 
             variant="outline" 
@@ -105,11 +141,21 @@ export const MediaUploadForm = ({
         <Label>Banner Promocional</Label>
         <div className="flex items-center gap-2">
           {signatureData.banner_url && (
-            <img 
-              src={signatureData.banner_url} 
-              alt="Banner" 
-              className="w-32 h-10 object-contain"
-            />
+            <div className="relative group">
+              <img 
+                src={signatureData.banner_url} 
+                alt="Banner" 
+                className="w-32 h-10 object-contain"
+              />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute -top-2 -right-2 h-6 w-6 bg-destructive text-destructive-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={() => handleImageRemove('banner')}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
           )}
           <Button 
             variant="outline" 
