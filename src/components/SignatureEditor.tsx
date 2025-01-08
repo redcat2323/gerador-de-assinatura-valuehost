@@ -1,13 +1,14 @@
 import React, { useState, useRef } from "react";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
-import { Copy, Download, Upload } from "lucide-react";
+import { Download, Upload } from "lucide-react";
 import { toast } from "sonner";
 import { SignatureForm } from "./signature/SignatureForm";
 import { SignaturePreview } from "./signature/SignaturePreview";
 import { TemplateSelector } from "./signature/TemplateSelector";
 import { useTranslation } from "../hooks/useTranslation";
 import { TemplateStyle } from "./signature/types";
+import { CopyButtons } from "./signature/CopyButtons";
 
 const SignatureEditor = () => {
   const { t } = useTranslation();
@@ -97,18 +98,6 @@ const SignatureEditor = () => {
     }));
   };
 
-  const copyToClipboard = async () => {
-    try {
-      const previewElement = document.querySelector("#signature-preview");
-      if (previewElement) {
-        await navigator.clipboard.writeText(previewElement.innerHTML);
-        toast.success(t("copied"));
-      }
-    } catch (error) {
-      toast.error(t("errorCopying"));
-    }
-  };
-
   const exportSignature = () => {
     const dataStr = JSON.stringify(signatureData, null, 2);
     const dataBlob = new Blob([dataStr], { type: "application/json" });
@@ -196,10 +185,7 @@ const SignatureEditor = () => {
         <Card className="p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold">Preview</h2>
-            <Button onClick={copyToClipboard} variant="outline" size="sm">
-              <Copy className="w-4 h-4 mr-2" />
-              {t("copy")}
-            </Button>
+            <CopyButtons previewId="signature-preview" />
           </div>
 
           <TemplateSelector
