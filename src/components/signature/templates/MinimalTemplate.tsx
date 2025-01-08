@@ -25,7 +25,11 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
                               <img
                                 src={data.logo_url}
                                 alt="Logo"
-                                style={{ maxWidth: "150px", height: "auto" }}
+                                style={{ 
+                                  maxWidth: "150px", 
+                                  height: "auto",
+                                  borderRadius: data.logo_border_radius || "0"
+                                }}
                               />
                             </td>
                           )}
@@ -36,7 +40,7 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
                                   <td style={{ paddingBottom: "5px" }}>
                                     <span style={{ 
                                       fontSize: "16px",
-                                      color: data.colors.primary || "#1a1f2c",
+                                      color: data.colors?.primary || "#1a1f2c",
                                       fontWeight: "normal"
                                     }}>
                                       {data.fullName || "Seu Nome"}
@@ -48,7 +52,7 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
                                     <td style={{ paddingBottom: "10px" }}>
                                       <span style={{ 
                                         fontSize: "14px",
-                                        color: data.colors.secondary || "#8e9196"
+                                        color: data.colors?.secondary || "#8e9196"
                                       }}>
                                         {data.jobTitle}
                                         {data.company && ` @ ${data.company}`}
@@ -84,7 +88,8 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
                           width: "100%",
                           maxWidth: "600px",
                           height: "auto",
-                          display: "block"
+                          display: "block",
+                          borderRadius: data.banner_border_radius || "0"
                         }}
                       />
                     </td>

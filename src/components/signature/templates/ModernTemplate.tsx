@@ -32,7 +32,7 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                                 style={{ 
                                   maxWidth: "150px", 
                                   height: "auto",
-                                  borderRadius: data.logo_border_radius || '0'
+                                  borderRadius: data.logo_border_radius || "0"
                                 }}
                               />
                             </td>
@@ -96,7 +96,7 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                           maxWidth: "600px",
                           height: "auto",
                           display: "block",
-                          borderRadius: data.banner_border_radius || '0'
+                          borderRadius: data.banner_border_radius || "0"
                         }}
                       />
                     </td>
