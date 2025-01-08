@@ -11,29 +11,47 @@ export type Database = {
     Tables: {
       signatures: {
         Row: {
+          banner_url: string | null
+          colors: Json | null
           created_at: string | null
+          custom_links: Json | null
           data: Json
+          font_family: string | null
           id: string
+          logo_url: string | null
           name: string
           template_id: string
+          template_style: string | null
           updated_at: string | null
           user_id: string | null
         }
         Insert: {
+          banner_url?: string | null
+          colors?: Json | null
           created_at?: string | null
+          custom_links?: Json | null
           data: Json
+          font_family?: string | null
           id?: string
+          logo_url?: string | null
           name: string
           template_id: string
+          template_style?: string | null
           updated_at?: string | null
           user_id?: string | null
         }
         Update: {
+          banner_url?: string | null
+          colors?: Json | null
           created_at?: string | null
+          custom_links?: Json | null
           data?: Json
+          font_family?: string | null
           id?: string
+          logo_url?: string | null
           name?: string
           template_id?: string
+          template_style?: string | null
           updated_at?: string | null
           user_id?: string | null
         }
