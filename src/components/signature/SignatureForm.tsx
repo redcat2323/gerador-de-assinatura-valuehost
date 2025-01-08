@@ -8,7 +8,8 @@ import { FontCustomizationForm } from "./form/FontCustomizationForm";
 import { CustomLinksForm } from "./form/CustomLinksForm";
 import { Button } from "../ui/button";
 import { useTranslation } from "../../hooks/useTranslation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check, Copy } from "lucide-react";
+import { Alert, AlertDescription } from "../ui/alert";
 
 interface SignatureFormProps {
   signatureData: SignatureData;
@@ -117,7 +118,7 @@ export const SignatureForm = ({
           <div className="space-y-6">
             <div className="flex items-center gap-2 mb-6">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-lg font-semibold">
-                4
+                <Check className="w-5 h-5" />
               </div>
               <h3 className="text-xl font-semibold">{t("customLinks")}</h3>
             </div>
@@ -125,6 +126,14 @@ export const SignatureForm = ({
               signatureData={signatureData}
               onCustomLinksChange={handleCustomLinksChange}
             />
+            <Alert className="mt-6">
+              <AlertDescription className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-green-500" />
+                <span>
+                  {t("finishMessage")}
+                </span>
+              </AlertDescription>
+            </Alert>
           </div>
         );
       default:
@@ -157,13 +166,16 @@ export const SignatureForm = ({
           <ChevronLeft className="w-4 h-4 mr-2" />
           {t("previous")}
         </Button>
-        <Button
-          onClick={goToNextStep}
-          disabled={currentStep === totalSteps}
-        >
-          {currentStep === totalSteps ? t("finish") : t("next")}
-          <ChevronRight className="w-4 h-4 ml-2" />
-        </Button>
+        {currentStep < totalSteps ? (
+          <Button onClick={goToNextStep}>
+            {t("next")}
+            <ChevronRight className="w-4 h-4 ml-2" />
+          </Button>
+        ) : (
+          <Button variant="outline" disabled className="opacity-0">
+            {t("finish")}
+          </Button>
+        )}
       </div>
     </div>
   );
