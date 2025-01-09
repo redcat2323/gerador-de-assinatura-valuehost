@@ -41,6 +41,20 @@ export const translations = {
     large: "Large",
     pageTitle: "Signature Generator",
     pageSubtitle: "Create your email signature easily.",
+    toggleTheme: "Toggle theme",
+    light: "Light",
+    dark: "Dark",
+    copied: "Copied to clipboard!",
+    copiedHtml: "HTML copied to clipboard!",
+    errorCopying: "Error copying to clipboard",
+    copyFormatted: "Copy Formatted",
+    copyHtml: "Copy HTML",
+    successImport: "Signature imported successfully!",
+    invalidSignature: "Invalid signature file",
+    errorImport: "Error importing signature",
+    import: "Import",
+    export: "Export",
+    finishMessage: "You're all set! Your signature is ready to use.",
   },
   "pt-BR": {
     classic: "Clássico",
@@ -82,48 +96,22 @@ export const translations = {
     large: "Grande",
     pageTitle: "Gerador de Assinaturas",
     pageSubtitle: "Crie sua assinatura de e-mail facilmente.",
+    toggleTheme: "Alternar tema",
+    light: "Claro",
+    dark: "Escuro",
+    copied: "Copiado para a área de transferência!",
+    copiedHtml: "HTML copiado para a área de transferência!",
+    errorCopying: "Erro ao copiar para a área de transferência",
+    copyFormatted: "Copiar Formatado",
+    copyHtml: "Copiar HTML",
+    successImport: "Assinatura importada com sucesso!",
+    invalidSignature: "Arquivo de assinatura inválido",
+    errorImport: "Erro ao importar assinatura",
+    import: "Importar",
+    export: "Exportar",
+    finishMessage: "Tudo pronto! Sua assinatura está pronta para uso.",
   },
 } as const;
 
-export type TranslationKey =
-  | "classic"
-  | "modern"
-  | "minimal"
-  | "professional"
-  | "basicInfo"
-  | "mediaAndStyle"
-  | "socialLinks"
-  | "customLinks"
-  | "previous"
-  | "next"
-  | "finish"
-  | "fullName"
-  | "jobTitle"
-  | "company"
-  | "email"
-  | "phone"
-  | "website"
-  | "uploadLogo"
-  | "uploadBanner"
-  | "colors"
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "font"
-  | "addLink"
-  | "label"
-  | "url"
-  | "removeLink"
-  | "successExport"
-  | "errorExport"
-  | "importSignature"
-  | "exportSignature"
-  | "templateStyle"
-  | "templateSize"
-  | "small"
-  | "medium"
-  | "large"
-  | "pageTitle"
-  | "pageSubtitle";
-
+export type TranslationKey = keyof (typeof translations)["en-US"];
 export type Language = "en-US" | "pt-BR";

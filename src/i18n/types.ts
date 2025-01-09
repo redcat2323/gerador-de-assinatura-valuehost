@@ -37,6 +37,18 @@ export type TranslationKey =
   | "medium"
   | "large"
   | "pageTitle"
-  | "pageSubtitle";
-
-export type Language = "en-US" | "pt-BR";
+  | "pageSubtitle"
+  | "toggleTheme"
+  | "light"
+  | "dark"
+  | "copied"
+  | "copiedHtml"
+  | "errorCopying"
+  | "copyFormatted"
+  | "copyHtml"
+  | "successImport"
+  | "invalidSignature"
+  | "errorImport"
+  | "import"
+  | "export"
+  | "finishMessage";
