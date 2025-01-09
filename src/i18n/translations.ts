@@ -1,4 +1,4 @@
-import { Language } from "./types";
+export type Language = "en-US" | "pt-BR";
 
 export const translations = {
   "en-US": {
@@ -114,4 +114,3 @@ export const translations = {
 } as const;
 
 export type TranslationKey = keyof (typeof translations)["en-US"];
-export type Language = "en-US" | "pt-BR";
