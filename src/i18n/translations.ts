@@ -1,69 +1,18 @@
-export type Language = "pt-BR" | "en-US";
-
-export type TranslationKey = keyof (typeof translations)["pt-BR"];
+import { Language } from "./types";
 
 export const translations = {
-  "pt-BR": {
-    basicInfo: "Informações Básicas",
-    mediaAndStyle: "Mídia e Estilo",
-    socialLinks: "Links Sociais",
-    customLinks: "Links Personalizados",
-    previous: "Anterior",
-    next: "Próximo",
-    finish: "Finalizado 🚀",
-    fullName: "Nome Completo",
-    jobTitle: "Cargo",
-    company: "Empresa",
-    email: "E-mail",
-    phone: "Telefone",
-    website: "Website",
-    uploadLogo: "Upload Logo",
-    uploadBanner: "Upload Banner",
-    primaryColor: "Cor Primária",
-    secondaryColor: "Cor Secundária",
-    accentColor: "Cor de Destaque",
-    font: "Fonte",
-    facebook: "Facebook",
-    twitter: "Twitter",
-    linkedin: "LinkedIn",
-    instagram: "Instagram",
-    addLink: "Adicionar Link",
-    label: "Rótulo",
-    url: "URL",
-    remove: "Remover",
-    copied: "Copiado!",
-    copiedHtml: "HTML copiado!",
-    errorCopying: "Erro ao copiar",
-    copyFormatted: "Copiar Formatado",
-    copyHtml: "Copiar HTML",
-    import: "Importar",
-    export: "Exportar",
-    successExport: "Assinatura exportada com sucesso!",
-    errorImport: "Erro ao importar arquivo",
-    successImport: "Assinatura importada com sucesso!",
-    invalidSignature: "Assinatura inválida",
-    borderRadius: "Borda Arredondada",
-    finishMessage: "Sua assinatura está pronta! Agora você pode copiá-la usando os botões acima.",
-    toggleTheme: "Alternar tema",
-    light: "Claro",
-    dark: "Escuro",
-    system: "Sistema",
-    templateStyle: "Estilo do Template",
-    classic: "Clássico",
-    modern: "Moderno",
-    minimal: "Minimalista",
-    professional: "Profissional",
-    pageTitle: "Gerador de Assinatura de E-mail",
-    pageSubtitle: "Crie uma assinatura de e-mail profissional em poucos minutos. Personalize modelos prontos com suas informações e estilo."
-  },
   "en-US": {
-    basicInfo: "Basic Information",
-    mediaAndStyle: "Media & Style",
+    classic: "Classic",
+    modern: "Modern",
+    minimal: "Minimal",
+    professional: "Professional",
+    basicInfo: "Basic Info",
+    mediaAndStyle: "Media and Style",
     socialLinks: "Social Links",
     customLinks: "Custom Links",
     previous: "Previous",
     next: "Next",
-    finish: "Finished 🚀",
+    finish: "Finish",
     fullName: "Full Name",
     jobTitle: "Job Title",
     company: "Company",
@@ -72,41 +21,109 @@ export const translations = {
     website: "Website",
     uploadLogo: "Upload Logo",
     uploadBanner: "Upload Banner",
-    primaryColor: "Primary Color",
-    secondaryColor: "Secondary Color",
-    accentColor: "Accent Color",
+    colors: "Colors",
+    primary: "Primary",
+    secondary: "Secondary",
+    accent: "Accent",
     font: "Font",
-    facebook: "Facebook",
-    twitter: "Twitter",
-    linkedin: "LinkedIn",
-    instagram: "Instagram",
     addLink: "Add Link",
     label: "Label",
     url: "URL",
-    remove: "Remove",
-    copied: "Copied!",
-    copiedHtml: "HTML copied!",
-    errorCopying: "Error copying",
-    copyFormatted: "Copy Formatted",
-    copyHtml: "Copy HTML",
-    import: "Import",
-    export: "Export",
-    successExport: "Signature exported successfully!",
-    errorImport: "Error importing file",
-    successImport: "Signature imported successfully!",
-    invalidSignature: "Invalid signature",
-    borderRadius: "Border Radius",
-    finishMessage: "Your signature is ready! You can now copy it using the buttons above.",
-    toggleTheme: "Toggle theme",
-    light: "Light",
-    dark: "Dark",
-    system: "System",
+    removeLink: "Remove Link",
+    successExport: "Export successful!",
+    errorExport: "Export failed!",
+    importSignature: "Import Signature",
+    exportSignature: "Export Signature",
     templateStyle: "Template Style",
-    classic: "Classic",
-    modern: "Modern",
-    minimal: "Minimal",
-    professional: "Professional",
-    pageTitle: "Email Signature Generator",
-    pageSubtitle: "Create a professional email signature in minutes. Customize ready-made templates with your information and style."
-  }
+    templateSize: "Template Size",
+    small: "Small",
+    medium: "Medium",
+    large: "Large",
+    pageTitle: "Signature Generator",
+    pageSubtitle: "Create your email signature easily.",
+  },
+  "pt-BR": {
+    classic: "Clássico",
+    modern: "Moderno",
+    minimal: "Minimalista",
+    professional: "Profissional",
+    basicInfo: "Informações Básicas",
+    mediaAndStyle: "Mídia e Estilo",
+    socialLinks: "Links Sociais",
+    customLinks: "Links Personalizados",
+    previous: "Anterior",
+    next: "Próximo",
+    finish: "Finalizar",
+    fullName: "Nome Completo",
+    jobTitle: "Cargo",
+    company: "Empresa",
+    email: "Email",
+    phone: "Telefone",
+    website: "Website",
+    uploadLogo: "Carregar Logo",
+    uploadBanner: "Carregar Banner",
+    colors: "Cores",
+    primary: "Primária",
+    secondary: "Secundária",
+    accent: "Acento",
+    font: "Fonte",
+    addLink: "Adicionar Link",
+    label: "Rótulo",
+    url: "URL",
+    removeLink: "Remover Link",
+    successExport: "Exportação bem-sucedida!",
+    errorExport: "Falha na exportação!",
+    importSignature: "Importar Assinatura",
+    exportSignature: "Exportar Assinatura",
+    templateStyle: "Estilo do Template",
+    templateSize: "Tamanho do Template",
+    small: "Pequeno",
+    medium: "Médio",
+    large: "Grande",
+    pageTitle: "Gerador de Assinaturas",
+    pageSubtitle: "Crie sua assinatura de e-mail facilmente.",
+  },
 } as const;
+
+export type TranslationKey =
+  | "classic"
+  | "modern"
+  | "minimal"
+  | "professional"
+  | "basicInfo"
+  | "mediaAndStyle"
+  | "socialLinks"
+  | "customLinks"
+  | "previous"
+  | "next"
+  | "finish"
+  | "fullName"
+  | "jobTitle"
+  | "company"
+  | "email"
+  | "phone"
+  | "website"
+  | "uploadLogo"
+  | "uploadBanner"
+  | "colors"
+  | "primary"
+  | "secondary"
+  | "accent"
+  | "font"
+  | "addLink"
+  | "label"
+  | "url"
+  | "removeLink"
+  | "successExport"
+  | "errorExport"
+  | "importSignature"
+  | "exportSignature"
+  | "templateStyle"
+  | "templateSize"
+  | "small"
+  | "medium"
+  | "large"
+  | "pageTitle"
+  | "pageSubtitle";
+
+export type Language = "en-US" | "pt-BR";
