@@ -50,12 +50,12 @@ export const EditorToolbar = ({ onImport, onExport }: EditorToolbarProps) => {
   };
 
   return (
-    <div className="flex gap-2">
-      <Button onClick={handleImportClick} variant="outline" size="sm">
+    <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+      <Button onClick={handleImportClick} variant="outline" size="sm" className="flex-1 sm:flex-none">
         <Upload className="w-4 h-4 mr-2" />
         {t("import")}
       </Button>
-      <Button onClick={onExport} variant="outline" size="sm">
+      <Button onClick={onExport} variant="outline" size="sm" className="flex-1 sm:flex-none">
         <Download className="w-4 h-4 mr-2" />
         {t("export")}
       </Button>

@@ -150,10 +150,10 @@ const SignatureEditor = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 p-6 max-w-7xl mx-auto">
-      <Card className="flex-1 p-6 bg-editor border-editor-border">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">{t("basicInfo")}</h2>
+    <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 px-2 sm:px-6 max-w-7xl mx-auto">
+      <Card className="flex-1 p-3 sm:p-6 bg-editor border-editor-border">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
+          <h2 className="text-xl sm:text-2xl font-semibold">{t("basicInfo")}</h2>
           <EditorToolbar 
             onImport={setSignatureData}
             onExport={exportSignature}
@@ -172,10 +172,10 @@ const SignatureEditor = () => {
         />
       </Card>
 
-      <div className="flex-1 space-y-8">
-        <Card className="p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold">Preview</h2>
+      <div className="flex-1 space-y-4 sm:space-y-8">
+        <Card className="p-3 sm:p-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
+            <h2 className="text-xl sm:text-2xl font-semibold">Preview</h2>
             <CopyButtons previewId="signature-preview" />
           </div>
 
@@ -186,7 +186,7 @@ const SignatureEditor = () => {
 
           <div
             id="signature-preview"
-            className="mt-6 p-4 border rounded-lg bg-card"
+            className="mt-4 sm:mt-6 p-2 sm:p-4 border rounded-lg bg-card overflow-x-auto"
           >
             <SignaturePreview signatureData={signatureData} />
           </div>
