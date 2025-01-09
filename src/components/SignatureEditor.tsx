@@ -4,8 +4,9 @@ import { toast } from "sonner";
 import { SignatureForm } from "./signature/SignatureForm";
 import { SignaturePreview } from "./signature/SignaturePreview";
 import { TemplateSelector } from "./signature/TemplateSelector";
+import { TemplateSizeSelector } from "./signature/TemplateSizeSelector";
 import { useTranslation } from "../hooks/useTranslation";
-import { TemplateStyle, SignatureData } from "./signature/types";
+import { TemplateStyle, SignatureData, TemplateSize } from "./signature/types";
 import { CopyButtons } from "./signature/CopyButtons";
 import { EditorToolbar } from "./signature/EditorToolbar";
 
@@ -20,6 +21,7 @@ const SignatureEditor = () => {
     phone: "",
     website: "",
     templateStyle: "classic" as TemplateStyle,
+    templateSize: "medium" as TemplateSize,
     social: {
       facebook: "",
       twitter: "",
@@ -149,6 +151,13 @@ const SignatureEditor = () => {
     toast.success(t("successExport"));
   };
 
+  const handleSizeChange = (size: TemplateSize) => {
+    setSignatureData((prev) => ({
+      ...prev,
+      templateSize: size,
+    }));
+  };
+
   return (
     <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 px-2 sm:px-6 max-w-7xl mx-auto">
       <Card className="flex-1 p-3 sm:p-6 bg-editor border-editor-border">
@@ -179,10 +188,17 @@ const SignatureEditor = () => {
             <CopyButtons previewId="signature-preview" />
           </div>
 
-          <TemplateSelector
-            selectedTemplate={signatureData.templateStyle}
-            handleTemplateChange={handleTemplateChange}
-          />
+          <div className="space-y-6">
+            <TemplateSelector
+              selectedTemplate={signatureData.templateStyle}
+              handleTemplateChange={handleTemplateChange}
+            />
+
+            <TemplateSizeSelector
+              selectedSize={signatureData.templateSize || "medium"}
+              handleSizeChange={handleSizeChange}
+            />
+          </div>
 
           <div
             id="signature-preview"

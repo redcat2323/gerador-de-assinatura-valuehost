@@ -9,6 +9,17 @@ interface SignaturePreviewProps {
   signatureData: SignatureData;
 }
 
+const getTemplateScale = (size?: string) => {
+  switch (size) {
+    case "small":
+      return 0.8;
+    case "large":
+      return 1.2;
+    default:
+      return 1;
+  }
+};
+
 export const SignaturePreview = ({ signatureData }: SignaturePreviewProps) => {
   const templates = {
     classic: ClassicTemplate,
@@ -18,6 +29,11 @@ export const SignaturePreview = ({ signatureData }: SignaturePreviewProps) => {
   };
 
   const SelectedTemplate = templates[signatureData.templateStyle as keyof typeof templates] || ClassicTemplate;
+  const scale = getTemplateScale(signatureData.templateSize);
 
-  return <SelectedTemplate data={signatureData} />;
+  return (
+    <div style={{ transform: `scale(${scale})`, transformOrigin: "top left" }}>
+      <SelectedTemplate data={signatureData} />
+    </div>
+  );
 };

@@ -11,6 +11,7 @@ export interface SignatureData {
   font_family?: string;
   logo_border_radius?: string;
   banner_border_radius?: string;
+  templateSize?: 'small' | 'medium' | 'large';
   colors?: {
     primary: string;
     secondary: string;
@@ -46,3 +47,4 @@ export interface SignatureData {
 }
 
 export type TemplateStyle = "classic" | "modern" | "minimal" | "professional";
+export type TemplateSize = "small" | "medium" | "large";
