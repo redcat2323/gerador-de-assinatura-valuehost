@@ -46,5 +46,5 @@ export interface SignatureData {
   };
 }
 
-export type TemplateStyle = "classic" | "modern" | "minimal" | "professional";
+export type TemplateStyle = "classic" | "modern" | "minimal" | "professional" | "creative" | "elegant" | "compact" | "bold";
 export type TemplateSize = "small" | "medium" | "large";

@@ -4,6 +4,10 @@ import { ClassicTemplate } from "./templates/ClassicTemplate";
 import { ModernTemplate } from "./templates/ModernTemplate";
 import { MinimalTemplate } from "./templates/MinimalTemplate";
 import { ProfessionalTemplate } from "./templates/ProfessionalTemplate";
+import { CreativeTemplate } from "./templates/CreativeTemplate";
+import { ElegantTemplate } from "./templates/ElegantTemplate";
+import { CompactTemplate } from "./templates/CompactTemplate";
+import { BoldTemplate } from "./templates/BoldTemplate";
 
 interface SignaturePreviewProps {
   signatureData: SignatureData;
@@ -26,6 +30,10 @@ export const SignaturePreview = ({ signatureData }: SignaturePreviewProps) => {
     modern: ModernTemplate,
     minimal: MinimalTemplate,
     professional: ProfessionalTemplate,
+    creative: CreativeTemplate,
+    elegant: ElegantTemplate,
+    compact: CompactTemplate,
+    bold: BoldTemplate,
   };
 
   const SelectedTemplate = templates[signatureData.templateStyle as keyof typeof templates] || ClassicTemplate;

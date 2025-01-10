@@ -36,6 +36,22 @@ export const TemplateSelector = ({ selectedTemplate, handleTemplateChange }: Tem
           <RadioGroupItem value="professional" id="professional" />
           <Label htmlFor="professional" className="text-sm sm:text-base">{t("professional")}</Label>
         </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="creative" id="creative" />
+          <Label htmlFor="creative" className="text-sm sm:text-base">{t("creative")}</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="elegant" id="elegant" />
+          <Label htmlFor="elegant" className="text-sm sm:text-base">{t("elegant")}</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="compact" id="compact" />
+          <Label htmlFor="compact" className="text-sm sm:text-base">{t("compact")}</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="bold" id="bold" />
+          <Label htmlFor="bold" className="text-sm sm:text-base">{t("bold")}</Label>
+        </div>
       </RadioGroup>
     </div>
   );
