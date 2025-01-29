@@ -11,20 +11,15 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
         <a 
-          href="https://napoleon.com.br" 
+          href="https://www.valuehost.com.br" 
           target="_blank" 
           rel="noopener noreferrer"
           className="flex items-center gap-2"
         >
           <img
-            src="https://napoleon.com.br/wp-content/uploads/2023/08/Asset-2.svg"
-            alt="Napoleon Logo"
-            className="h-8 dark:hidden"
-          />
-          <img
-            src="https://napoleon.com.br/wp-content/uploads/2023/08/Asset-4.svg"
-            alt="Napoleon Logo"
-            className="h-8 hidden dark:block"
+            src="https://www.valuehost.com.br/assets/svg/logo/logo.svg"
+            alt="ValueHost Logo"
+            className="h-8"
           />
         </a>
         <div className="flex items-center gap-2">
