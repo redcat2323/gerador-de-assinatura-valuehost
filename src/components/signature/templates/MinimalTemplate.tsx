@@ -35,7 +35,7 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
                                 marginLeft: "10px"
                               }}>
                                 {data.jobTitle}
-                                {data.company && ` @ ${data.company}`}
+                                {data.company && ` | ${data.company}`}
                               </span>
                             )}
                           </td>
