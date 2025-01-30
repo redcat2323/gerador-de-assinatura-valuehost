@@ -61,7 +61,7 @@ export const ProfessionalTemplate = ({ data }: ProfessionalTemplateProps) => {
                                         fontWeight: "500"
                                       }}>
                                         {data.jobTitle}
-                                        {data.company && ` @ ${data.company}`}
+                                        {data.company && ` | ${data.company}`}
                                       </span>
                                     )}
                                   </td>

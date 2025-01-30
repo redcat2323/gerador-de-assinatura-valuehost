@@ -61,7 +61,7 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                                         marginTop: "4px"
                                       }}>
                                         {data.jobTitle}
-                                        {data.company && ` @ ${data.company}`}
+                                        {data.company && ` | ${data.company}`}
                                       </span>
                                     )}
                                   </td>

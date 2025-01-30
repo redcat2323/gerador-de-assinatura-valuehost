@@ -67,7 +67,7 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                                         color: data.colors?.secondary || "#8e9196",
                                       }}>
                                         {getFormattedText(data.jobTitle, data.textFormatting?.jobTitle)}
-                                        {data.company && " @ "}
+                                        {data.company && " | "}
                                         {data.company && getFormattedText(data.company, data.textFormatting?.company)}
                                       </span>
                                     </td>
