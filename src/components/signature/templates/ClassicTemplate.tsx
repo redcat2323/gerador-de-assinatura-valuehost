@@ -3,6 +3,7 @@ import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
 import { ContactInfo } from "./shared/ContactInfo";
+import { CustomLinks } from "./shared/CustomLinks";
 
 interface ClassicTemplateProps {
   data: SignatureData;
@@ -87,6 +88,7 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
                                 <tr>
                                   <td style={{ paddingTop: "15px" }}>
                                     <SocialIcons social={data.social} colors={data.colors} />
+                                    <CustomLinks data={data} colors={data.colors} />
                                   </td>
                                 </tr>
                               </tbody>

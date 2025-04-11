@@ -3,6 +3,7 @@ import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
 import { ContactInfo } from "./shared/ContactInfo";
+import { CustomLinks } from "./shared/CustomLinks";
 
 interface CompactTemplateProps {
   data: SignatureData;
@@ -59,6 +60,7 @@ export const CompactTemplate = ({ data }: CompactTemplateProps) => {
                 <tr>
                   <td colSpan={2} style={{ paddingTop: "10px" }}>
                     <ContactInfo data={data} />
+                    <CustomLinks data={data} colors={data.colors} />
                   </td>
                 </tr>
               </tbody>

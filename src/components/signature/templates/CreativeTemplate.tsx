@@ -3,6 +3,7 @@ import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
 import { ContactInfo } from "./shared/ContactInfo";
+import { CustomLinks } from "./shared/CustomLinks";
 
 interface CreativeTemplateProps {
   data: SignatureData;
@@ -70,6 +71,7 @@ export const CreativeTemplate = ({ data }: CreativeTemplateProps) => {
                     <div style={{ marginTop: "15px" }}>
                       <SocialIcons social={data.social} colors={data.colors} />
                     </div>
+                    <CustomLinks data={data} colors={{ ...data.colors, accent: "#ffffff" }} />
                   </td>
                 </tr>
               </tbody>

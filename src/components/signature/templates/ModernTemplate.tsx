@@ -3,6 +3,7 @@ import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
 import { ContactInfo } from "./shared/ContactInfo";
+import { CustomLinks } from "./shared/CustomLinks";
 
 interface ModernTemplateProps {
   data: SignatureData;
@@ -75,6 +76,7 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                                 <tr>
                                   <td>
                                     <SocialIcons social={data.social} colors={data.colors} />
+                                    <CustomLinks data={data} colors={data.colors} />
                                   </td>
                                 </tr>
                               </tbody>

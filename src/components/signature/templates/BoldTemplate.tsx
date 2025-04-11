@@ -3,6 +3,7 @@ import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
 import { ContactInfo } from "./shared/ContactInfo";
+import { CustomLinks } from "./shared/CustomLinks";
 
 interface BoldTemplateProps {
   data: SignatureData;
@@ -72,6 +73,7 @@ export const BoldTemplate = ({ data }: BoldTemplateProps) => {
                     <div style={{ marginTop: "10px" }}>
                       <SocialIcons social={data.social} colors={data.colors} />
                     </div>
+                    <CustomLinks data={data} colors={{ ...data.colors, accent: "#ffffff" }} />
                   </td>
                 </tr>
               </tbody>

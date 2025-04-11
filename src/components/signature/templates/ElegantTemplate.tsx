@@ -3,6 +3,7 @@ import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
 import { ContactInfo } from "./shared/ContactInfo";
+import { CustomLinks } from "./shared/CustomLinks";
 
 interface ElegantTemplateProps {
   data: SignatureData;
@@ -66,6 +67,7 @@ export const ElegantTemplate = ({ data }: ElegantTemplateProps) => {
                     <div style={{ marginTop: "15px" }}>
                       <SocialIcons social={data.social} colors={data.colors} />
                     </div>
+                    <CustomLinks data={data} colors={data.colors} />
                   </td>
                 </tr>
               </tbody>

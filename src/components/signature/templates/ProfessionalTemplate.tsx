@@ -3,6 +3,7 @@ import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
 import { ContactInfo } from "./shared/ContactInfo";
+import { CustomLinks } from "./shared/CustomLinks";
 
 interface ProfessionalTemplateProps {
   data: SignatureData;
@@ -83,6 +84,7 @@ export const ProfessionalTemplate = ({ data }: ProfessionalTemplateProps) => {
                             <div style={{ marginTop: "15px" }}>
                               <SocialIcons social={data.social} colors={data.colors} />
                             </div>
+                            <CustomLinks data={data} colors={data.colors} />
                           </td>
                         </tr>
                       </tbody>
