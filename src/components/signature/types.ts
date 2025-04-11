@@ -1,3 +1,4 @@
+
 export interface SignatureData {
   fullName: string;
   jobTitle: string;
@@ -16,6 +17,7 @@ export interface SignatureData {
     primary: string;
     secondary: string;
     accent: string;
+    background: string;
   };
   social: {
     facebook: string;

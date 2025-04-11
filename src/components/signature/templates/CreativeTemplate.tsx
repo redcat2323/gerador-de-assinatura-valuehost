@@ -1,3 +1,4 @@
+
 import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
@@ -16,7 +17,11 @@ export const CreativeTemplate = ({ data }: CreativeTemplateProps) => {
     <table cellPadding="0" cellSpacing="0" style={{ ...textStyle }}>
       <tbody>
         <tr>
-          <td style={{ padding: "20px", background: data.colors?.accent || "#9b87f5", borderRadius: "15px" }}>
+          <td style={{ 
+            padding: "20px", 
+            background: data.colors?.background || data.colors?.accent || "#9b87f5", 
+            borderRadius: "15px" 
+          }}>
             <table cellPadding="0" cellSpacing="0">
               <tbody>
                 <tr>

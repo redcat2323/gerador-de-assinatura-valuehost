@@ -1,3 +1,4 @@
+
 import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
@@ -12,7 +13,10 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
     <table cellPadding="0" cellSpacing="0" style={{ width: "100%", maxWidth: "600px", fontFamily: data.font_family || "Arial, sans-serif" }}>
       <tbody>
         <tr>
-          <td style={{ padding: "15px" }}>
+          <td style={{ 
+            padding: "15px", 
+            backgroundColor: data.colors?.background || "#ffffff" 
+          }}>
             <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
               <tbody>
                 <tr>

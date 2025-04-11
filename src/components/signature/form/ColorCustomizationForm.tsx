@@ -9,8 +9,9 @@ interface ColorCustomizationFormProps {
     primary: string;
     secondary: string;
     accent: string;
+    background: string;
   };
-  onColorChange: (colorType: 'primary' | 'secondary' | 'accent', value: string) => void;
+  onColorChange: (colorType: 'primary' | 'secondary' | 'accent' | 'background', value: string) => void;
 }
 
 export const ColorCustomizationForm = ({ colors, onColorChange }: ColorCustomizationFormProps) => {
@@ -78,6 +79,29 @@ export const ColorCustomizationForm = ({ colors, onColorChange }: ColorCustomiza
         </div>
         <p className="text-xs text-muted-foreground mt-1">
           Esta cor será usada para os ícones de redes sociais e outros destaques.
+        </p>
+      </div>
+
+      <div>
+        <Label htmlFor="backgroundColor">Cor de Fundo</Label>
+        <div className="flex gap-2 items-center">
+          <Input
+            id="backgroundColor"
+            type="color"
+            value={colors.background || "#ffffff"}
+            onChange={(e) => onColorChange('background', e.target.value)}
+            className="w-12 h-12 p-1 cursor-pointer"
+          />
+          <Input
+            type="text"
+            value={colors.background || "#ffffff"}
+            onChange={(e) => onColorChange('background', e.target.value)}
+            placeholder="#ffffff"
+            className="font-mono"
+          />
+        </div>
+        <p className="text-xs text-muted-foreground mt-1">
+          Esta cor será usada como fundo em alguns templates de assinatura.
         </p>
       </div>
     </div>

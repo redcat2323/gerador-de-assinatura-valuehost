@@ -1,3 +1,4 @@
+
 import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
@@ -21,7 +22,12 @@ export const ClassicTemplate = ({ data }: ClassicTemplateProps) => {
   };
 
   return (
-    <table cellPadding="0" cellSpacing="0" style={{ width: "100%", maxWidth: "600px", fontFamily: data.font_family || "Arial, sans-serif" }}>
+    <table cellPadding="0" cellSpacing="0" style={{ 
+      width: "100%", 
+      maxWidth: "600px", 
+      fontFamily: data.font_family || "Arial, sans-serif",
+      backgroundColor: data.colors?.background || "#ffffff"
+    }}>
       <tbody>
         <tr>
           <td style={{ padding: "20px", borderLeft: `3px solid ${data.colors?.accent || "#9b87f5"}` }}>

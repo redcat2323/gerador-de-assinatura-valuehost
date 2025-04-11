@@ -1,3 +1,4 @@
+
 import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
@@ -13,7 +14,7 @@ export const CompactTemplate = ({ data }: CompactTemplateProps) => {
   };
 
   return (
-    <table cellPadding="0" cellSpacing="0" style={{ ...textStyle }}>
+    <table cellPadding="0" cellSpacing="0" style={{ ...textStyle, backgroundColor: data.colors?.background || "#ffffff" }}>
       <tbody>
         <tr>
           <td>

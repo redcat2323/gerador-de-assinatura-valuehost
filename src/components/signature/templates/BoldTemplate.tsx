@@ -1,3 +1,4 @@
+
 import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
@@ -21,7 +22,7 @@ export const BoldTemplate = ({ data }: BoldTemplateProps) => {
               <tbody>
                 <tr>
                   <td style={{ 
-                    backgroundColor: data.colors?.primary || "#1a1f2c",
+                    backgroundColor: data.colors?.background || data.colors?.primary || "#1a1f2c",
                     padding: "20px",
                     borderRadius: "10px 10px 0 0"
                   }}>

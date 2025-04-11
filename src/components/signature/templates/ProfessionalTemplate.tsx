@@ -1,3 +1,4 @@
+
 import React from "react";
 import { SignatureData } from "../types";
 import { SocialIcons } from "./shared/SocialIcons";
@@ -15,7 +16,8 @@ export const ProfessionalTemplate = ({ data }: ProfessionalTemplateProps) => {
           <td style={{ 
             padding: "25px",
             border: `1px solid ${data.colors?.secondary}20`,
-            borderRadius: "4px"
+            borderRadius: "4px",
+            backgroundColor: data.colors?.background || "#ffffff"
           }}>
             <table cellPadding="0" cellSpacing="0" style={{ width: "100%" }}>
               <tbody>
