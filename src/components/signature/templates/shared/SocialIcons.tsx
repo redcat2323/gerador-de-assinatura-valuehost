@@ -1,5 +1,7 @@
+
 import React from "react";
 import { SignatureData } from "../../types";
+import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 interface SocialIconsProps {
   social: SignatureData['social'];
@@ -10,6 +12,10 @@ export const SocialIcons = ({ social, colors }: SocialIconsProps) => {
   if (!social.facebook && !social.twitter && !social.linkedin && !social.instagram) {
     return null;
   }
+
+  // Set icon color to accent color or fall back to a default
+  const iconColor = colors?.accent || "#9b87f5";
+  const iconSize = 20;
 
   return (
     <table cellPadding="0" cellSpacing="0">
@@ -23,13 +29,7 @@ export const SocialIcons = ({ social, colors }: SocialIconsProps) => {
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
               >
-                <img 
-                  src="https://cdn-icons-png.flaticon.com/32/733/733547.png" 
-                  alt="Facebook"
-                  width="20"
-                  height="20"
-                  style={{ display: "block" }}
-                />
+                <Facebook color={iconColor} size={iconSize} />
               </a>
             </td>
           )}
@@ -41,13 +41,7 @@ export const SocialIcons = ({ social, colors }: SocialIconsProps) => {
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
               >
-                <img 
-                  src="https://cdn-icons-png.flaticon.com/32/733/733579.png" 
-                  alt="Twitter"
-                  width="20"
-                  height="20"
-                  style={{ display: "block" }}
-                />
+                <Twitter color={iconColor} size={iconSize} />
               </a>
             </td>
           )}
@@ -59,13 +53,7 @@ export const SocialIcons = ({ social, colors }: SocialIconsProps) => {
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
               >
-                <img 
-                  src="https://cdn-icons-png.flaticon.com/32/733/733561.png" 
-                  alt="LinkedIn"
-                  width="20"
-                  height="20"
-                  style={{ display: "block" }}
-                />
+                <Linkedin color={iconColor} size={iconSize} />
               </a>
             </td>
           )}
@@ -77,13 +65,7 @@ export const SocialIcons = ({ social, colors }: SocialIconsProps) => {
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
               >
-                <img 
-                  src="https://cdn-icons-png.flaticon.com/32/733/733558.png" 
-                  alt="Instagram"
-                  width="20"
-                  height="20"
-                  style={{ display: "block" }}
-                />
+                <Instagram color={iconColor} size={iconSize} />
               </a>
             </td>
           )}
