@@ -32,6 +32,19 @@ export const CustomLinksForm = ({
     onCustomLinksChange(newLinks);
   };
 
+  const validateUrl = (index: number) => {
+    const url = links[index].url;
+    if (!url) return;
+
+    if (url.match(/^https?:\/\//)) {
+      return;
+    }
+
+    const newLinks = [...links];
+    newLinks[index] = { ...newLinks[index], url: `https://${url}` };
+    onCustomLinksChange(newLinks);
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -72,6 +85,7 @@ export const CustomLinksForm = ({
                 id={`link-url-${index}`}
                 value={link.url}
                 onChange={(e) => updateLink(index, "url", e.target.value)}
+                onBlur={() => validateUrl(index)}
                 placeholder="https://..."
               />
             </div>

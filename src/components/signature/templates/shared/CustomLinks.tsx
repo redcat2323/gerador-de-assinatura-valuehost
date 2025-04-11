@@ -1,4 +1,3 @@
-
 import React from "react";
 import { SignatureData } from "../../types";
 
@@ -11,6 +10,19 @@ interface CustomLinksProps {
   };
 }
 
+// Helper function to ensure URLs have proper format
+const ensureHttps = (url: string): string => {
+  if (!url) return "";
+  
+  // If URL already has a protocol (http:// or https://), return as is
+  if (url.match(/^https?:\/\//)) {
+    return url;
+  }
+  
+  // Otherwise, add https:// prefix
+  return `https://${url}`;
+};
+
 export const CustomLinks = ({ data, colors }: CustomLinksProps) => {
   if (!data.customLinks || data.customLinks.length === 0) {
     return null;
@@ -21,7 +33,7 @@ export const CustomLinks = ({ data, colors }: CustomLinksProps) => {
       {data.customLinks.map((link, index) => (
         <div key={index} style={{ marginBottom: "5px" }}>
           <a
-            href={link.url}
+            href={ensureHttps(link.url)}
             target="_blank"
             rel="noopener noreferrer"
             style={{
